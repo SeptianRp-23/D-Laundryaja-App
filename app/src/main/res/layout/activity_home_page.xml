@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PageUser.Dashboard.Profile.ProfileActivity">
+    tools:context=".Test.BottomSheetDialog.HomePage">
 
     <TextView
+        android:id="@+id/itemEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="50dp"
-        android:text="Kurir"/>
+        android:text="Admin"
+        android:textSize="30dp"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
