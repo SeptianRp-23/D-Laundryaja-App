@@ -20,10 +20,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.dlaundryaja.Activity.PageUser.Dashboard.Profile.ProfileActivity;
+import com.android.dlaundryaja.Activity.PageKurir.Akun.KurAkunActivity;
+import com.android.dlaundryaja.Activity.PageKurir.Dashboard.KurDashboardActivity;
+import com.android.dlaundryaja.Activity.PageUser.Dashboard.DashboardActivity;
 import com.android.dlaundryaja.MainActivity;
 import com.android.dlaundryaja.R;
-import com.android.dlaundryaja.Server.Rest.Api;
 import com.android.dlaundryaja.Test.BottomSheetDialog.HomePage;
 import com.android.dlaundryaja.Utils.Controller.SessionManager;
 import com.android.volley.AuthFailureError;
@@ -84,13 +85,13 @@ public class LoginActivity extends AppCompatActivity {
         });
         String loginstatus = sharedPreferences.getString(getResources().getString(R.string.prefLoginState),"");
         if (loginstatus.equals("LoggedIn")){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         }
         else if (loginstatus.equals("LoggedOn")){
             startActivity(new Intent(LoginActivity.this, HomePage.class));
         }
         else if (loginstatus.equals("LoggedEn")){
-            startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+            startActivity(new Intent(LoginActivity.this, KurDashboardActivity.class));
         }
     }
 
@@ -175,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.putString(getResources().getString(R.string.prefLoginState),"LoggedIn");
                                             }else if (loginstate.isChecked() && level.equals("admin")){
                                                 editor.putString(getResources().getString(R.string.prefLoginState),"LoggedOn");
-                                            }else if (loginstate.isChecked() && level.equals("kurir")){
+                                            }else if (loginstate.isChecked() && level.equals("antar")){
                                                 editor.putString(getResources().getString(R.string.prefLoginState),"LoggedEn");
                                             }
                                             else {
@@ -185,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                                             if (level.equals("user")){
                                                 sessionManager.createSession(name, email, level, id);
                                                 editor.apply();
-                                                final Intent inte = new Intent(LoginActivity.this, MainActivity.class);
+                                                final Intent inte = new Intent(LoginActivity.this, DashboardActivity.class);
                                                 inte.putExtra("name", name);
                                                 inte.putExtra("email", email);
                                                 dialog.show();
@@ -219,10 +220,10 @@ public class LoginActivity extends AppCompatActivity {
                                                 }, 3000);
                                             }
 
-                                            else if (level.equals("kurir")){
+                                            else if (level.equals("antar")){
                                                 sessionManager.createSession(name, email, level, id);
                                                 editor.apply();
-                                                final Intent in = new Intent(LoginActivity.this, ProfileActivity.class);
+                                                final Intent in = new Intent(LoginActivity.this, KurDashboardActivity.class);
                                                 in.putExtra("name", name);
                                                 in.putExtra("email", email);
                                                 dialog.show();
