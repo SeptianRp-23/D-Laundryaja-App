@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">@android:color/holo_blue_dark</color>
     <color name="colorPrimaryDark">#0382AC</color>
-    <color name="colorAccent">@android:color/background_light</color>
+    <color name="colorAccent">@android:color/holo_red_dark</color>
 
     <color name="tab_indicator">#c0c0c0c0</color>
     <color name="intro_title">@android:color/black</color>

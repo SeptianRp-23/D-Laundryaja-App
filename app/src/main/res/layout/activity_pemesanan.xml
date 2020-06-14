@@ -63,8 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/id_pelanggan"
-                android:hint="Id Pelanggan"
-                android:visibility="gone"/>
+                app:met_floatingLabel="normal"
+                android:hint="Id Pelanggan"/>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
@@ -114,6 +114,16 @@
                     android:fontFamily="@font/montserrat"
                     android:layout_marginLeft="10dp"/>
 
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/edit"
+                    android:src="@drawable/ic_buka"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:visibility="invisible"/>
+
             </RelativeLayout>
 
             <LinearLayout
@@ -125,7 +135,7 @@
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/nama_pelanggan"
+                    android:id="@+id/pem_nama"
                     app:met_floatingLabel="normal"
                     android:hint="Nama Pelanggan"
                     android:layout_marginTop="10dp"/>
@@ -133,9 +143,17 @@
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/no_telp"
+                    android:id="@+id/pem_telp"
                     app:met_floatingLabel="normal"
                     android:hint="No Telp"
+                    android:layout_marginTop="10dp"/>
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pem_alamat"
+                    app:met_floatingLabel="normal"
+                    android:hint="Alamat"
                     android:layout_marginTop="10dp"/>
 
                 <TextView
@@ -157,20 +175,33 @@
                 <com.rengwuxian.materialedittext.MaterialEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/alamat"
-                    app:met_floatingLabel="normal"
-                    android:hint="Alamat"
-                    android:layout_marginTop="10dp"/>
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/detail"
                     app:met_floatingLabel="normal"
                     android:hint="Detail Alamat"
                     android:layout_marginTop="10dp"/>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/harga"
+                android:text=""
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/keterangan"
+                android:text=""
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/stat"
+                android:text="Menunggu Konfirmasi"
+                android:visibility="gone"/>
 
             <Button
                 android:layout_width="match_parent"

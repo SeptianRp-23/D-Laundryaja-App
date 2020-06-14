@@ -12,23 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.PageUser.Dashboard.PemesananActivity"
+        <activity android:name=".Activity.PageAdmin.Dashboard.AdmDetailDashboard"
             android:theme="@style/Custom"></activity>
-        <activity android:name=".Activity.PageUser.Status.History.HistoryActivity" />
+        <activity
+            android:name=".Activity.PageUser.Dashboard.PemesananActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageUser.Status.History.HistoryActivity"
+            android:theme="@style/Custom" />
         <activity android:name=".Test.OnboardingScreen.OnboardingActivity" />
         <activity android:name=".Test.BottomSheetDialog.HomePage" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".Activity.PageUser.Dashboard.DashboardActivity"
             android:theme="@style/Custom" />
-        <activity android:name=".Activity.PageUser.Account.AccountActivity" />
-        <activity android:name=".Activity.PageUser.Status.StatusActivity" />
+        <activity
+            android:name=".Activity.PageUser.Account.AccountActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageUser.Status.StatusActivity"
+            android:theme="@style/Custom" />
         <activity android:name=".Activity.PageKurir.Dashboard.KurDashboardActivity" />
         <activity android:name=".Activity.PageKurir.Akun.KurAkunActivity" />
         <activity android:name=".Activity.PageAdmin.Laporan.AdmLaporanActivity" />
         <activity android:name=".Activity.PageAdmin.Akun.AdmAkunActivity" />
         <activity android:name=".Activity.PageAdmin.Dashboard.AdmDashboardActivity" />
-        <activity android:name=".Register.RegisterActivity" />
+        <activity
+            android:name=".Register.RegisterActivity"
+            android:theme="@style/Custom" />
         <activity
             android:name=".Login.LoginActivity"
             android:theme="@style/Custom">

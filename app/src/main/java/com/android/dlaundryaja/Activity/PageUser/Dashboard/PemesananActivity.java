@@ -1,7 +1,6 @@
 package com.android.dlaundryaja.Activity.PageUser.Dashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,36 +12,74 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.dlaundryaja.R;
+import com.android.dlaundryaja.Server.Local.Api;
+import com.android.dlaundryaja.Utils.Controller.SessionManager;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class PemesananActivity extends AppCompatActivity {
 
-    private String[] jenis = {"Select", "Rumah", "Kontrakan", "Kost'an", "Kantor", "Sekolah", "Lainnya"};
-    MaterialEditText etJenis, tanggal, nama, telp, alamat, detail;
+    private static final String TAG = PemesananActivity.class.getSimpleName() ;
+    private String[] jenis = {"Select", "Rumah", "Kontrakan", "Kost", "Kantor", "Sekolah", "Lainnya"};
+    MaterialEditText etId, etJenis, etTanggal, etNama, etTelp, etAlamat, etDetail;
     String myFormat = "dd-MM-yyy hh:mm a";
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+    ImageView btEdit;
+    Spinner etLokasi;
+    SessionManager sessionManager;
+    String getId, getNama, getTelp, getAlamat;
+    TextView tvHarga, tvKet, tvStatus;
+    private String InsertData = Api.URL_API + "insertData.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemesanan);
 
-        nama = findViewById(R.id.nama_pelanggan);
-        telp = findViewById(R.id.no_telp);
-        alamat = findViewById(R.id.alamat);
-        detail = findViewById(R.id.detail);
-        tanggal = findViewById(R.id.tanggal);
+        sessionManager = new SessionManager(this);
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        getId = user.get(SessionManager.ID);
+        getNama = user.get(SessionManager.NAME);
+        getTelp = user.get(SessionManager.TELP);
+        getAlamat = user.get(SessionManager.ALAMAT);
+
+        btEdit = findViewById(R.id.edit);
+        etNama = findViewById(R.id.pem_nama);
+        etTelp = findViewById(R.id.pem_telp);
+        etAlamat = findViewById(R.id.pem_alamat);
+        etDetail = findViewById(R.id.detail);
+        etTanggal = findViewById(R.id.tanggal);
         etJenis = findViewById(R.id.jenis);
+        etId = findViewById(R.id.id_pelanggan);
+        etLokasi = findViewById(R.id.jenis_lokasi);
+        tvHarga = findViewById(R.id.harga);
+        tvKet = findViewById(R.id.keterangan);
+        tvStatus = findViewById(R.id.stat);
+
+        etId.setText(getId);
+        etNama.setText(getNama);
+        etTelp.setText(getTelp);
+        etAlamat.setText(getAlamat);
 
         //Disable Editext
         etJenis.setEnabled(false);
-        tanggal.setEnabled(false);
+        etTanggal.setEnabled(false);
+        etId.setEnabled(false);
+        etNama.setEnabled(false);
+        etTelp.setEnabled(false);
+        etAlamat.setEnabled(false);
 
         //Set Jenis
         etJenis.setText(getIntent().getStringExtra("jenis"));
@@ -50,22 +87,22 @@ public class PemesananActivity extends AppCompatActivity {
         //Set Tanggal
         Calendar c1 = Calendar.getInstance();
         String str1 = sdf.format(c1.getTime());
-        tanggal.setText(str1);
+        etTanggal.setText(str1);
         //end
 
         final Button btSubmit = findViewById(R.id.submit);
         btSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String mNama = nama.getText().toString().trim();
-                final String mTelp = telp.getText().toString().trim();
-                final String mAlamat = alamat.getText().toString().trim();
-                final String mDetail = detail.getText().toString().trim();
+                final String mNama = etNama.getText().toString().trim();
+                final String mTelp = etTelp.getText().toString().trim();
+                final String mAlamat = etAlamat.getText().toString().trim();
+                final String mDetail = etDetail.getText().toString().trim();
 
                 if (mNama.isEmpty() || mTelp.isEmpty() || mAlamat.isEmpty() || mDetail.isEmpty()){
                 Toast.makeText(PemesananActivity.this, "Field Belum Terpenuhi", Toast.LENGTH_SHORT).show();
             }else{
-                    Toast.makeText(PemesananActivity.this, "Proses!", Toast.LENGTH_SHORT).show();
+                    InsertData();
                 }
             }
         });
@@ -105,6 +142,7 @@ public class PemesananActivity extends AppCompatActivity {
             public void onClick(View view) {
                 bawah.setVisibility(View.GONE);
                 atas.setVisibility(View.VISIBLE);
+                btEdit.setVisibility(View.VISIBLE);
                 layoutData.setVisibility(View.VISIBLE);
             }
         });
@@ -113,6 +151,7 @@ public class PemesananActivity extends AppCompatActivity {
             public void onClick(View view) {
                 bawah.setVisibility(View.VISIBLE);
                 atas.setVisibility(View.GONE);
+                btEdit.setVisibility(View.INVISIBLE);
                 layoutData.setVisibility(View.GONE);
             }
         });
@@ -127,5 +166,68 @@ public class PemesananActivity extends AppCompatActivity {
             }
         });
         //end
+
+        btEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etNama.setEnabled(true);
+                etTelp.setEnabled(true);
+                etAlamat.setEnabled(true);
+            }
+        });
     }
+
+        private void InsertData() {
+            final String txtId = etId.getText().toString().trim();
+            final String txtJenis = etJenis.getText().toString().trim();
+            final String txtTgl = etTanggal.getText().toString().trim();
+            final String txtNama = etNama.getText().toString().trim();
+            final String txtTelp = etTelp.getText().toString().trim();
+            final String txtAlamat = etAlamat.getText().toString().trim();
+            final String txtLokasi = etLokasi.getSelectedItem().toString().trim();
+            final String txtDetail = etDetail.getText().toString().trim();
+            final String txtHarga = tvHarga.getText().toString().trim();
+            final String txtKet = tvKet.getText().toString().trim();
+            final String txtStatus = tvStatus.getText().toString().trim();
+
+            StringRequest request = new StringRequest(Request.Method.POST, InsertData,
+                new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    if (response.equalsIgnoreCase("success")) {
+                        Toast.makeText(PemesananActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PemesananActivity.this, DashboardActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(PemesananActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                },
+                new Response.ErrorListener() {
+                @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(PemesananActivity.this, "Error Connection" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                ){
+                @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("id_user", txtId);
+                        params.put("jenis", txtJenis);
+                        params.put("tanggal", txtTgl);
+                        params.put("nama", txtNama);
+                        params.put("telp", txtTelp);
+                        params.put("alamat", txtAlamat);
+                        params.put("lokasi", txtLokasi);
+                        params.put("detail", txtDetail);
+                        params.put("harga", txtHarga);
+                        params.put("keterangan", txtKet);
+                        params.put("status", txtStatus);
+                        return params;
+                    }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(PemesananActivity.this);
+            requestQueue.add(request);
+        }
 }

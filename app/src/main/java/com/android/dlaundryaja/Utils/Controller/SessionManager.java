@@ -16,10 +16,13 @@ public class SessionManager {
     public static final String LOGIN = "IS_LOGIN";
     public static final String LOGIN_ADMIN = "IS_LOGED_IN";
     public static final String LOGIN_KURIR = "IS_LOGED_ON";
+    public static final String ID = "ID";
     public static final String NAME = "NAME";
     public static final String EMAIL = "EMAIL";
+    public static final String TGL = "TGL";
+    public static final String TELP = "TELP";
+    public static final String ALAMAT = "ALAMAT";
     public static final String LEVEL = "LEVEL";
-    public static final String ID = "ID";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -27,14 +30,17 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession (String name, String email, String id, String level){
+    public void createSession (String id, String name, String email, String tgl, String telp, String alamat , String level){
         editor.putBoolean(LOGIN, true);
         editor.putBoolean(LOGIN_ADMIN, true);
         editor.putBoolean(LOGIN_KURIR, true);
+        editor.putString(ID, id);
         editor.putString(NAME, name);
         editor.putString(EMAIL, email);
+        editor.putString(TGL, tgl);
+        editor.putString(TELP, telp);
+        editor.putString(ALAMAT, alamat);
         editor.putString(LEVEL, level);
-        editor.putString(ID, id);
         editor.apply();
     }
 
@@ -57,9 +63,12 @@ public class SessionManager {
     public HashMap<String, String> getUserDetail(){
 
         HashMap<String, String> user = new HashMap<>();
+        user.put(ID, sharedPreferences.getString(ID, null));
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(EMAIL, sharedPreferences.getString(EMAIL, null));
-        user.put(ID, sharedPreferences.getString(ID, null));
+        user.put(TGL, sharedPreferences.getString(TGL, null));
+        user.put(TELP, sharedPreferences.getString(TELP, null));
+        user.put(ALAMAT, sharedPreferences.getString(ALAMAT, null));
 
         return user;
     }

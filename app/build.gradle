@@ -42,4 +42,7 @@ dependencies {
     //Rest Api
     implementation 'com.android.volley:volley:1.1.0'
 
+    //loading animation
+    implementation 'com.agrawalsuneet.androidlibs:dotsloader:1.4'
+
 }

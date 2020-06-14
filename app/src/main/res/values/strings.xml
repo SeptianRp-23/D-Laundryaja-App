@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">D\'LaundryAja</string>
     <string name="prefLoginState">loginstate</string>
+    <string name="d_laundryaja">D\'LaundryAja</string>
 </resources>
