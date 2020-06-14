@@ -1,7 +1,13 @@
 package com.android.dlaundryaja.Utils.Controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+
+import com.android.dlaundryaja.Activity.PageAdmin.Akun.AdmAkunActivity;
+import com.android.dlaundryaja.Activity.PageKurir.Akun.KurirAkunActivity;
+import com.android.dlaundryaja.Activity.PageUser.Account.UserAccountActivity;
+import com.android.dlaundryaja.Login.LoginActivity;
 
 import java.util.HashMap;
 
@@ -73,11 +79,25 @@ public class SessionManager {
         return user;
     }
 //Logout
-//    public void logout(){
-//        editor.clear();
-//        editor.commit();
-//        Intent intent = new Intent(context, LoginActivity.class);
-//        context.startActivity(intent);
-//        ((Read_Profile)context).finish();
-//    }
+    public void LogoutUser(){
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+        ((UserAccountActivity)context).finish();
+    }
+    public void LogoutAdmin(){
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+        ((AdmAkunActivity)context).finish();
+    }
+    public void LogoutKurir(){
+        editor.clear();
+        editor.commit();
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+        ((KurirAkunActivity)context).finish();
+    }
 }

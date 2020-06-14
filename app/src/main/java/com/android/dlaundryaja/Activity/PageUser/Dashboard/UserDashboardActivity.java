@@ -16,8 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.android.dlaundryaja.Activity.PageUser.Account.AccountActivity;
-import com.android.dlaundryaja.Activity.PageUser.Status.StatusActivity;
+import com.android.dlaundryaja.Activity.PageUser.Account.UserAccountActivity;
+import com.android.dlaundryaja.Activity.PageUser.Status.UserStatusActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Utils.Controller.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DashboardActivity extends AppCompatActivity {
+public class UserDashboardActivity extends AppCompatActivity {
 
     SessionManager sessionManager;
     String getID;
@@ -38,7 +38,7 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_user_dashboard);
 
         sharedPreferences = getSharedPreferences("UserInfo",MODE_PRIVATE);
         sessionManager = new SessionManager(this);
@@ -98,13 +98,13 @@ public class DashboardActivity extends AppCompatActivity {
 
                     case R.id.history:
                         startActivity(new Intent(getApplicationContext(),
-                                StatusActivity.class));
+                                UserStatusActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(),
-                                AccountActivity.class));
+                                UserAccountActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -118,7 +118,7 @@ public class DashboardActivity extends AppCompatActivity {
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, PemesananActivity.class);
+                Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv1.getText().toString());
                 startActivity(intent);
             }
@@ -128,7 +128,7 @@ public class DashboardActivity extends AppCompatActivity {
         card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, PemesananActivity.class);
+                Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv2.getText().toString());
                 startActivity(intent);
             }
@@ -138,7 +138,7 @@ public class DashboardActivity extends AppCompatActivity {
         card3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, PemesananActivity.class);
+                Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv3.getText().toString());
                 startActivity(intent);
             }
@@ -148,7 +148,7 @@ public class DashboardActivity extends AppCompatActivity {
         card4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, PemesananActivity.class);
+                Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv4.getText().toString());
                 startActivity(intent);
             }

@@ -187,6 +187,7 @@
                     android:layout_height="wrap_content"
                     app:met_floatingLabel="normal"
                     android:hint="Status"
+                    android:text="Di Jemput"
                     android:textAlignment="center"
                     android:id="@+id/txt_status_dtl"
                     android:visibility="gone"/>

@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PageAdmin.Akun.AdmAkunActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="16sp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circle_primary"
+        android:textColor="@android:color/white"
+        android:id="@+id/bt_logout"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

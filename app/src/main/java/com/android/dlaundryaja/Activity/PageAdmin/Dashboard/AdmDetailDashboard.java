@@ -31,7 +31,7 @@ public class AdmDetailDashboard extends AppCompatActivity {
     MaterialEditText etInvoice, etIdUser, etJenis, etTanggal, etNama, etTelp, etAlamat, etDetail, etStatus;
     int position;
     Button btKonfirm;
-    private String EditAPI = Api.URL_API + "editMobil.php";
+    private String StatusAPI = Api.URL_API + "editStatus.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class AdmDetailDashboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(AdmDetailDashboard.this, "Pressed", Toast.LENGTH_SHORT).show();
+                SaveEditDetail();
             }
         });
 
@@ -92,7 +93,7 @@ public class AdmDetailDashboard extends AppCompatActivity {
         progressDialog.setMessage("Saving...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, EditAPI,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, StatusAPI,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

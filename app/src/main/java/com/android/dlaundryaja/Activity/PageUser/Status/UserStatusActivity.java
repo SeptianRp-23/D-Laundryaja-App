@@ -3,21 +3,18 @@ package com.android.dlaundryaja.Activity.PageUser.Status;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.dlaundryaja.Activity.PageUser.Account.AccountActivity;
-import com.android.dlaundryaja.Activity.PageUser.Dashboard.DashboardActivity;
-import com.android.dlaundryaja.Activity.PageUser.Status.History.HistoryActivity;
+import com.android.dlaundryaja.Activity.PageUser.Account.UserAccountActivity;
+import com.android.dlaundryaja.Activity.PageUser.Dashboard.UserDashboardActivity;
+import com.android.dlaundryaja.Activity.PageUser.Status.History.UserHistoryActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Server.Local.Api;
 import com.android.dlaundryaja.Utils.Controller.SessionManager;
@@ -37,9 +34,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StatusActivity extends AppCompatActivity {
+public class UserStatusActivity extends AppCompatActivity {
 
-    private static final String TAG = StatusActivity.class.getSimpleName() ;
+    private static final String TAG = UserStatusActivity.class.getSimpleName() ;
     ImageView imgHistory, imgStatus;
     TextView pesanan;
     private String GetUserAPI = Api.URL_API + "getPesananUser.php";
@@ -49,7 +46,7 @@ public class StatusActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_status);
+        setContentView(R.layout.activity_user_status);
 
 
         sessionManager = new SessionManager(this);
@@ -67,7 +64,7 @@ public class StatusActivity extends AppCompatActivity {
         imgHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StatusActivity.this, HistoryActivity.class));
+                startActivity(new Intent(UserStatusActivity.this, UserHistoryActivity.class));
             }
         });
 //
@@ -93,7 +90,7 @@ public class StatusActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.dashboard:
                         startActivity(new Intent(getApplicationContext(),
-                                DashboardActivity.class));
+                                UserDashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
@@ -105,7 +102,7 @@ public class StatusActivity extends AppCompatActivity {
 
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(),
-                                AccountActivity.class));
+                                UserAccountActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }
@@ -185,14 +182,14 @@ public class StatusActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(StatusActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserStatusActivity.this, "Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(StatusActivity.this, "Error Connection", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserStatusActivity.this, "Error Connection", Toast.LENGTH_SHORT).show();
                     }
                 })
         {

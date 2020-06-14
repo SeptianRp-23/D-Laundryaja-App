@@ -12,28 +12,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.PageAdmin.Dashboard.AdmDetailDashboard"
-            android:theme="@style/Custom"></activity>
+        <activity android:name=".Activity.PageKurir.Diantar.KurirAntarDetail"></activity>
+        <activity android:name=".Activity.PageKurir.Diantar.KurirAntarActivity" />
+        <activity android:name=".Activity.PageKurir.KurirDashboardActivity"
+            android:theme="@style/Custom"/>
+        <activity android:name=".Activity.PageKurir.DiJemput.KurirJemputDetail" />
         <activity
-            android:name=".Activity.PageUser.Dashboard.PemesananActivity"
+            android:name=".Activity.PageAdmin.Dashboard.AdmDetailDashboard"
             android:theme="@style/Custom" />
         <activity
-            android:name=".Activity.PageUser.Status.History.HistoryActivity"
+            android:name=".Activity.PageUser.Dashboard.UserPemesananActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageUser.Status.History.UserHistoryActivity"
             android:theme="@style/Custom" />
         <activity android:name=".Test.OnboardingScreen.OnboardingActivity" />
         <activity android:name=".Test.BottomSheetDialog.HomePage" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".Activity.PageUser.Dashboard.DashboardActivity"
+            android:name=".Activity.PageUser.Dashboard.UserDashboardActivity"
             android:theme="@style/Custom" />
         <activity
-            android:name=".Activity.PageUser.Account.AccountActivity"
+            android:name=".Activity.PageUser.Account.UserAccountActivity"
             android:theme="@style/Custom" />
         <activity
-            android:name=".Activity.PageUser.Status.StatusActivity"
+            android:name=".Activity.PageUser.Status.UserStatusActivity"
             android:theme="@style/Custom" />
-        <activity android:name=".Activity.PageKurir.Dashboard.KurDashboardActivity" />
-        <activity android:name=".Activity.PageKurir.Akun.KurAkunActivity" />
+        <activity android:name=".Activity.PageKurir.DiJemput.KurirJemputActivity" />
+        <activity android:name=".Activity.PageKurir.Akun.KurirAkunActivity" />
         <activity android:name=".Activity.PageAdmin.Laporan.AdmLaporanActivity" />
         <activity android:name=".Activity.PageAdmin.Akun.AdmAkunActivity" />
         <activity android:name=".Activity.PageAdmin.Dashboard.AdmDashboardActivity" />

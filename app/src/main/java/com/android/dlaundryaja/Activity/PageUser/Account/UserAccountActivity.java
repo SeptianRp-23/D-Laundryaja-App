@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,10 +17,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.dlaundryaja.Activity.PageUser.Dashboard.DashboardActivity;
-import com.android.dlaundryaja.Activity.PageUser.Status.StatusActivity;
+import com.android.dlaundryaja.Activity.PageUser.Dashboard.UserDashboardActivity;
+import com.android.dlaundryaja.Activity.PageUser.Status.UserStatusActivity;
 import com.android.dlaundryaja.Login.LoginActivity;
-import com.android.dlaundryaja.MainActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Server.Local.Api;
 import com.android.dlaundryaja.Utils.Controller.SessionManager;
@@ -40,14 +40,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountActivity extends AppCompatActivity {
+public class UserAccountActivity extends AppCompatActivity {
 
-    private static final String TAG = StatusActivity.class.getSimpleName() ;
+    private static final String TAG = UserStatusActivity.class.getSimpleName() ;
     SessionManager sessionManager;
     String getID;
     SharedPreferences sharedPreferences;
     Button btLogout, btUpdate;
     ImageView btEdit;
+    Context mContext;
     MaterialEditText etID, etNama, etEmail, etTgl, etTelp, etAlamat;
     private String GetUserAPI = Api.URL_API + "dataUser.php";
     private String EditUser = Api.URL_API + "editUser.php";
@@ -55,7 +56,7 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_user_account);
 
         sharedPreferences = getSharedPreferences("UserInfo",MODE_PRIVATE);
         sessionManager = new SessionManager(this);
@@ -100,7 +101,7 @@ public class AccountActivity extends AppCompatActivity {
         btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(AccountActivity.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(UserAccountActivity.this);
                 builder.setMessage("Confirm Exit");
                 builder.setIcon(R.drawable.ic_exit);
                 builder.setMessage("Yakin Ingin Keluar ?");
@@ -110,13 +111,13 @@ public class AccountActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Logout();
-//                        finish();
+                        finish();
                     }
                 });
                 builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(AccountActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserAccountActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
                     }
                 });
                 AlertDialog alertDialog = builder.create();
@@ -134,13 +135,13 @@ public class AccountActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.dashboard:
                         startActivity(new Intent(getApplicationContext(),
-                                DashboardActivity.class));
+                                UserDashboardActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
                     case R.id.history:
                         startActivity(new Intent(getApplicationContext(),
-                                StatusActivity.class));
+                                UserStatusActivity.class));
                         overridePendingTransition(0,0);
                         return true;
 
@@ -208,7 +209,7 @@ public class AccountActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             progressDialog.dismiss();
-                            Toast.makeText(AccountActivity.this, "Error Reading Detail "+e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserAccountActivity.this, "Error Reading Detail "+e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -216,7 +217,7 @@ public class AccountActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(AccountActivity.this, "Error Reading Detail "+error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserAccountActivity.this, "Error Reading Detail "+error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 })
         {
@@ -263,7 +264,7 @@ public class AccountActivity extends AppCompatActivity {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")){
-                                Toast.makeText(AccountActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UserAccountActivity.this, "Success!", Toast.LENGTH_SHORT).show();
 //                                sessionManager.createSession(email, name, id);
                                 disabled();
                                 getUserDetail();
@@ -271,7 +272,7 @@ public class AccountActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                             progressDialog.dismiss();
-                            Toast.makeText(AccountActivity.this, "Error"+e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserAccountActivity.this, "Error"+e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -279,7 +280,7 @@ public class AccountActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         progressDialog.dismiss();
-                        Toast.makeText(AccountActivity.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserAccountActivity.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
 
                     }
                 })
@@ -304,7 +305,9 @@ public class AccountActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getResources().getString(R.string.prefLoginState),"LoggedOut");
         editor.apply();
-        startActivity(new Intent(AccountActivity.this, LoginActivity.class));
+        Intent i = new Intent(this, LoginActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
         finish();
     }
 }

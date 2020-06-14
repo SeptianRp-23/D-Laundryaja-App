@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.dlaundryaja.Activity.PageAdmin.Akun.AdmAkunActivity;
@@ -51,7 +52,9 @@ public class AdmDashboardActivity extends AppCompatActivity {
     PesananAdapter pesananAdapter;
     public static ArrayList<DataPesanan> dataPesananArrayList = new ArrayList<>();
     private String DataPesananApi = Api.URL_API + "dataPesanan.php";
+    private String StatusAPI = Api.URL_API + "editStatus.php";
     DataPesanan dataPesanan;
+    TextView tvSts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +70,68 @@ public class AdmDashboardActivity extends AppCompatActivity {
         listViewAdm = findViewById(R.id.myListviewAdm);
         pesananAdapter = new PesananAdapter(this, dataPesananArrayList);
         listViewAdm.setAdapter(pesananAdapter);
+        tvSts = findViewById(R.id.txtSts);
 
         receiveData();
 
         listViewAdm.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                ProgressDialog progressDialog = new ProgressDialog(view.getContext());
-
-                progressDialog.dismiss();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+//                ProgressDialog progressDialog = new ProgressDialog(view.getContext());
+//                SaveEditDetail();
                 startActivity(new Intent(getApplicationContext(), AdmDetailDashboard.class)
                         .putExtra("position", position));
+
+//                final String status = this.tvSts.getText().toString().trim();
+                final ProgressDialog progressDialog = new ProgressDialog(AdmDashboardActivity.this);
+                progressDialog.setMessage("Saving...");
+                progressDialog.show();
+                final String Tstatus = tvSts.getText().toString().trim();
+                final String Tinvoice = dataPesananArrayList.get(position).getInvoice();
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, StatusAPI,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                progressDialog.dismiss();
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String success = jsonObject.getString("success");
+
+                                    if (success.equals("1")){
+                                        Toast.makeText(AdmDashboardActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+//                                Intent intent = new Intent(AdmDashboardActivity.this, AdmDashboardActivity.class);
+//                                startActivity(intent);
+//                                sessionManager.createSession(email, name, id);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    progressDialog.dismiss();
+                                    Toast.makeText(AdmDashboardActivity.this, "Error"+e.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                progressDialog.dismiss();
+                                Toast.makeText(AdmDashboardActivity.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        })
+                {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("status", Tstatus);
+                        params.put("invoice", Tinvoice);
+                        return params;
+                    }
+                };
+                RequestQueue requestQueue = Volley.newRequestQueue(AdmDashboardActivity.this);
+                requestQueue.add(stringRequest);
 //                progressDialog.dismiss();
 //                startActivity(new Intent(getApplicationContext(), DetailMobilActivity.class)
 ////                        .putExtra("position", position));
@@ -189,7 +242,64 @@ public class AdmDashboardActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
-
+//
+//    private void SaveEditDetail() {
+//
+////        final String merk = this.etMerk.getText().toString().trim();
+////        final String nama = this.etNama.getText().toString().trim();
+////        final String warna = this.etWarna.getText().toString().trim();
+////        final String plat = this.etPlat.getText().toString().trim();
+////        final String tahun = this.etTahun.getText().toString().trim();
+//        final String invoice = this.tvInv.getText().toString().trim();
+//
+//        final ProgressDialog progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Saving...");
+//        progressDialog.show();
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, StatusAPI,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//
+//                        progressDialog.dismiss();
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response);
+//                            String success = jsonObject.getString("success");
+//
+//                            if (success.equals("1")){
+//                                Toast.makeText(AdmDashboardActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+////                                Intent intent = new Intent(AdmDashboardActivity.this, AdmDashboardActivity.class);
+////                                startActivity(intent);
+////                                sessionManager.createSession(email, name, id);
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            progressDialog.dismiss();
+//                            Toast.makeText(AdmDashboardActivity.this, "Error"+e.toString(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        progressDialog.dismiss();
+//                        Toast.makeText(AdmDashboardActivity.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                })
+//        {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("status", status);
+//                params.put("invoice", invoice);
+//                return params;
+//            }
+//        };
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(stringRequest);
+//
+//    }
 
     @Override
     public void onBackPressed() {

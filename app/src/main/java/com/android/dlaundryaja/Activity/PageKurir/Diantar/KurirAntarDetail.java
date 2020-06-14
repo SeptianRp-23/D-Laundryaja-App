@@ -1,4 +1,4 @@
-package com.android.dlaundryaja.Activity.PageKurir.Akun;
+package com.android.dlaundryaja.Activity.PageKurir.Diantar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.android.dlaundryaja.R;
 
-public class KurAkunActivity extends AppCompatActivity {
+public class KurirAntarDetail extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kur_akun);
+        setContentView(R.layout.activity_kurir_antar_detail);
     }
 }

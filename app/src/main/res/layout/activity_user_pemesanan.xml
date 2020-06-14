@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PageUser.Dashboard.PemesananActivity">
+    tools:context=".Activity.PageUser.Dashboard.UserPemesananActivity">
 
 
     <LinearLayout
@@ -80,6 +80,32 @@
                 app:met_floatingLabel="normal"
                 android:hint="Tanggal Pemesanan"
                 android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/hargapesanan"
+                    app:met_floatingLabel="normal"
+                    android:hint="Harga"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"/>
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_satuan"
+                    app:met_floatingLabel="normal"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="5dp"
+                    android:hint="Satuan"/>
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -181,13 +207,6 @@
                     android:layout_marginTop="10dp"/>
 
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/harga"
-                android:text=""
-                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"

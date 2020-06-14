@@ -29,24 +29,24 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class PemesananActivity extends AppCompatActivity {
+public class UserPemesananActivity extends AppCompatActivity {
 
-    private static final String TAG = PemesananActivity.class.getSimpleName() ;
+    private static final String TAG = UserPemesananActivity.class.getSimpleName() ;
     private String[] jenis = {"Select", "Rumah", "Kontrakan", "Kost", "Kantor", "Sekolah", "Lainnya"};
-    MaterialEditText etId, etJenis, etTanggal, etNama, etTelp, etAlamat, etDetail;
+    MaterialEditText etId, etJenis, etTanggal, etNama, etTelp, etAlamat, etDetail, ethargapesanan, etSatuan;
     String myFormat = "dd-MM-yyy hh:mm a";
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
     ImageView btEdit;
     Spinner etLokasi;
     SessionManager sessionManager;
     String getId, getNama, getTelp, getAlamat;
-    TextView tvHarga, tvKet, tvStatus;
+    TextView tvKet, tvStatus;
     private String InsertData = Api.URL_API + "insertData.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pemesanan);
+        setContentView(R.layout.activity_user_pemesanan);
 
         sessionManager = new SessionManager(this);
         HashMap<String, String> user = sessionManager.getUserDetail();
@@ -64,9 +64,10 @@ public class PemesananActivity extends AppCompatActivity {
         etJenis = findViewById(R.id.jenis);
         etId = findViewById(R.id.id_pelanggan);
         etLokasi = findViewById(R.id.jenis_lokasi);
-        tvHarga = findViewById(R.id.harga);
         tvKet = findViewById(R.id.keterangan);
         tvStatus = findViewById(R.id.stat);
+        ethargapesanan = findViewById(R.id.hargapesanan);
+        etSatuan = findViewById(R.id.txt_satuan);
 
         etId.setText(getId);
         etNama.setText(getNama);
@@ -80,9 +81,28 @@ public class PemesananActivity extends AppCompatActivity {
         etNama.setEnabled(false);
         etTelp.setEnabled(false);
         etAlamat.setEnabled(false);
+        ethargapesanan.setEnabled(false);
+        etSatuan.setEnabled(false);
 
         //Set Jenis
         etJenis.setText(getIntent().getStringExtra("jenis"));
+        final String txtJenis = this.etJenis.getText().toString();
+        if (txtJenis.equals("Laundry Prioritas")){
+            ethargapesanan.setText("15000");
+            etSatuan.setText("/Kilo");
+        }
+        else if (txtJenis.equals("Cuci Lengkap")){
+            ethargapesanan.setText("10000");
+            etSatuan.setText("/Kilo");
+        }
+        else if (txtJenis.equals("Setrika")){
+            ethargapesanan.setText("5000");
+            etSatuan.setText("/15 Pcs");
+        }
+        else if (txtJenis.equals("Cuci Sepatu")){
+            ethargapesanan.setText("30000");
+            etSatuan.setText("/Sepatu");
+        }
 
         //Set Tanggal
         Calendar c1 = Calendar.getInstance();
@@ -100,7 +120,7 @@ public class PemesananActivity extends AppCompatActivity {
                 final String mDetail = etDetail.getText().toString().trim();
 
                 if (mNama.isEmpty() || mTelp.isEmpty() || mAlamat.isEmpty() || mDetail.isEmpty()){
-                Toast.makeText(PemesananActivity.this, "Field Belum Terpenuhi", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UserPemesananActivity.this, "Field Belum Terpenuhi", Toast.LENGTH_SHORT).show();
             }else{
                     InsertData();
                 }
@@ -119,7 +139,7 @@ public class PemesananActivity extends AppCompatActivity {
                 if (value.equals("Select")){
 
                 }else {
-                    Toast.makeText(PemesananActivity.this, ""+value, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserPemesananActivity.this, ""+value, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -162,7 +182,7 @@ public class PemesananActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PemesananActivity.this, DashboardActivity.class));
+                startActivity(new Intent(UserPemesananActivity.this, UserDashboardActivity.class));
             }
         });
         //end
@@ -186,7 +206,7 @@ public class PemesananActivity extends AppCompatActivity {
             final String txtAlamat = etAlamat.getText().toString().trim();
             final String txtLokasi = etLokasi.getSelectedItem().toString().trim();
             final String txtDetail = etDetail.getText().toString().trim();
-            final String txtHarga = tvHarga.getText().toString().trim();
+            final String txtHarga = ethargapesanan.getText().toString().trim();
             final String txtKet = tvKet.getText().toString().trim();
             final String txtStatus = tvStatus.getText().toString().trim();
 
@@ -195,18 +215,18 @@ public class PemesananActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     if (response.equalsIgnoreCase("success")) {
-                        Toast.makeText(PemesananActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(PemesananActivity.this, DashboardActivity.class);
+                        Toast.makeText(UserPemesananActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(UserPemesananActivity.this, UserDashboardActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(PemesananActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserPemesananActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
                     }
                 }
                 },
                 new Response.ErrorListener() {
                 @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(PemesananActivity.this, "Error Connection" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserPemesananActivity.this, "Error Connection" + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 ){
@@ -227,7 +247,7 @@ public class PemesananActivity extends AppCompatActivity {
                         return params;
                     }
             };
-            RequestQueue requestQueue = Volley.newRequestQueue(PemesananActivity.this);
+            RequestQueue requestQueue = Volley.newRequestQueue(UserPemesananActivity.this);
             requestQueue.add(request);
         }
 }

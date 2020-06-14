@@ -3,7 +3,6 @@ package com.android.dlaundryaja.Login;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,23 +10,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
-import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.AdmDashboardActivity;
-import com.android.dlaundryaja.Activity.PageKurir.Akun.KurAkunActivity;
-import com.android.dlaundryaja.Activity.PageKurir.Dashboard.KurDashboardActivity;
-import com.android.dlaundryaja.Activity.PageUser.Dashboard.DashboardActivity;
-import com.android.dlaundryaja.MainActivity;
+import com.android.dlaundryaja.Activity.PageKurir.DiJemput.KurirJemputActivity;
+import com.android.dlaundryaja.Activity.PageKurir.KurirDashboardActivity;
+import com.android.dlaundryaja.Activity.PageUser.Dashboard.UserDashboardActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Server.Local.Api;
-import com.android.dlaundryaja.Test.BottomSheetDialog.HomePage;
 import com.android.dlaundryaja.Utils.Controller.SessionManager;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -47,6 +41,8 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private long backPressedTime;
+    private Toast backToast;
     Button btLogin, btRegist, btShowLogin, btShowRegist;
     MaterialEditText Mail, Pass;
     CheckBox loginstate;
@@ -87,13 +83,13 @@ public class LoginActivity extends AppCompatActivity {
         });
         String loginstatus = sharedPreferences.getString(getResources().getString(R.string.prefLoginState),"");
         if (loginstatus.equals("LoggedIn")){
-            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+            startActivity(new Intent(LoginActivity.this, UserDashboardActivity.class));
         }
         else if (loginstatus.equals("LoggedOn")){
             startActivity(new Intent(LoginActivity.this, AdmDashboardActivity.class));
         }
         else if (loginstatus.equals("LoggedEn")){
-            startActivity(new Intent(LoginActivity.this, KurDashboardActivity.class));
+            startActivity(new Intent(LoginActivity.this, KurirDashboardActivity.class));
         }
     }
 
@@ -191,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
                                             if (level.equals("user")){
                                                 sessionManager.createSession(id, name, email, tgl, telp, alamat,  level);
                                                 editor.apply();
-                                                final Intent inte = new Intent(LoginActivity.this, DashboardActivity.class);
+                                                final Intent inte = new Intent(LoginActivity.this, UserDashboardActivity.class);
                                                 inte.putExtra("name", name);
                                                 inte.putExtra("email", email);
                                                 dialog.show();
@@ -228,7 +224,7 @@ public class LoginActivity extends AppCompatActivity {
                                             else if (level.equals("kurir")){
                                                 sessionManager.createSession(id, name, email, tgl, telp, alamat,  level);
                                                 editor.apply();
-                                                final Intent in = new Intent(LoginActivity.this, KurDashboardActivity.class);
+                                                final Intent in = new Intent(LoginActivity.this, KurirDashboardActivity.class);
                                                 in.putExtra("name", name);
                                                 in.putExtra("email", email);
                                                 dialog.show();
@@ -273,4 +269,20 @@ public class LoginActivity extends AppCompatActivity {
                 requestQueue.add(stringRequest);
             }
 
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        } else {
+            backToast = Toast.makeText(this, "Tekan Lagi Untuk Keluar", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 }
