@@ -101,20 +101,21 @@
             app:cardElevation="8dp"
             app:cardCornerRadius="8dp"
             android:layout_margin="10dp"
-            android:id="@+id/c_prioritas">
+            android:id="@+id/card_jemput">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_bell"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/img_alert1"
-                    android:visibility="visible"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:lottie_autoPlay="true"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    app:lottie_fileName="alert.json"
+                    app:lottie_loop="true"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -151,20 +152,21 @@
             app:cardElevation="8dp"
             app:cardCornerRadius="8dp"
             android:layout_margin="10dp"
-            android:id="@+id/c_lengkap">
+            android:id="@+id/card_antar">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_bell"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/img_alert2"
-                    android:visibility="visible"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:lottie_autoPlay="true"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    app:lottie_fileName="alert.json"
+                    app:lottie_loop="true"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -205,7 +207,7 @@
             app:cardCornerRadius="8dp"
             android:layout_marginTop="20dp"
             android:layout_margin="10dp"
-            android:id="@+id/c_setrika">
+            android:id="@+id/card_tugas">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -242,7 +244,7 @@
             app:cardCornerRadius="8dp"
             android:layout_marginTop="20dp"
             android:layout_margin="10dp"
-            android:id="@+id/c_sepatu">
+            android:id="@+id/card_profil">
 
             <RelativeLayout
                 android:layout_width="match_parent"

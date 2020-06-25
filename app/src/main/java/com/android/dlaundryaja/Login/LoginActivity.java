@@ -16,8 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.AdmDashboardActivity;
-import com.android.dlaundryaja.Activity.PageKurir.DiJemput.KurirJemputActivity;
+import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.AdmMenuDashboard;
 import com.android.dlaundryaja.Activity.PageKurir.KurirDashboardActivity;
 import com.android.dlaundryaja.Activity.PageUser.Dashboard.UserDashboardActivity;
 import com.android.dlaundryaja.R;
@@ -43,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private long backPressedTime;
     private Toast backToast;
-    Button btLogin, btRegist, btShowLogin, btShowRegist;
+    Button btLogin, btRegist;
     MaterialEditText Mail, Pass;
     CheckBox loginstate;
     SharedPreferences sharedPreferences;
@@ -59,13 +58,13 @@ public class LoginActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        btShowRegist = findViewById(R.id.show_regist);
-        btShowLogin = findViewById(R.id.log_btn_login);
+        btRegist = findViewById(R.id.show_regist);
+        btLogin = findViewById(R.id.log_btn_login);
         Mail = findViewById(R.id.log_txt_email);
         Pass = findViewById(R.id.log_txt_pass);
         loginstate = findViewById(R.id.state);
 
-        btShowLogin.setOnClickListener(new View.OnClickListener() {
+        btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String txtemail = Mail.getText().toString().trim();
@@ -75,8 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "field can not be empty", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    btShowLogin.setBackgroundResource(R.drawable.circle_block);
-                    btShowLogin.setEnabled(false);
+                    btLogin.setBackgroundResource(R.drawable.circle_block);
+                    btLogin.setEnabled(false);
                     loginProces(txtemail, txtpass);
                 }
             }
@@ -86,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, UserDashboardActivity.class));
         }
         else if (loginstatus.equals("LoggedOn")){
-            startActivity(new Intent(LoginActivity.this, AdmDashboardActivity.class));
+            startActivity(new Intent(LoginActivity.this, AdmMenuDashboard.class));
         }
         else if (loginstatus.equals("LoggedEn")){
             startActivity(new Intent(LoginActivity.this, KurirDashboardActivity.class));
@@ -206,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
                                             else if (level.equals("admin")){
                                                 sessionManager.createSession(id, name, email, tgl, telp, alamat,  level);
                                                 editor.apply();
-                                                final Intent it = new Intent(LoginActivity.this, AdmDashboardActivity.class);
+                                                final Intent it = new Intent(LoginActivity.this, AdmMenuDashboard.class);
                                                 it.putExtra("name", name);
                                                 it.putExtra("email", email);
                                                 dialog.show();
@@ -243,8 +242,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    btShowLogin.setBackgroundResource(R.drawable.circle_primary);
-                                    btShowLogin.setEnabled(true);
+                                    btLogin.setBackgroundResource(R.drawable.circle_primary);
+                                    btLogin.setEnabled(true);
                                     Toast.makeText(LoginActivity.this, "Error, Email Or Password", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -253,8 +252,8 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(LoginActivity.this, "Error, Check Connection" + error.toString(), Toast.LENGTH_SHORT).show();
-                                btShowLogin.setBackgroundResource(R.drawable.circle_primary);
-                                btShowLogin.setEnabled(true);
+                                btLogin.setBackgroundResource(R.drawable.circle_primary);
+                                btLogin.setEnabled(true);
                             }
                         }) {
                     @Override

@@ -60,7 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical">
 
@@ -70,38 +69,58 @@
                 android:id="@+id/txt_jenis"
                 android:text="Jenis"
                 android:textSize="20sp"
-                android:layout_marginLeft="10dp"
                 />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txt_nama"
+                    android:layout_alignParentLeft="true"
                     android:text="Nama"
                     android:textSize="16sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
                     />
 
-            <TextView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_right"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txt_tanggal"
-                android:gravity="center_vertical"
-                android:text="Tanggal"
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_id_pemesan"
+                    android:gravity="center_vertical"
+                    android:text="Id"
+                    android:textSize="14sp"
+                    android:layout_weight="2"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_tanggal"
+                    android:gravity="center_vertical"
+                    android:text="Tanggal"
+                    android:textSize="14sp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_right"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            />
 
     </LinearLayout>
 

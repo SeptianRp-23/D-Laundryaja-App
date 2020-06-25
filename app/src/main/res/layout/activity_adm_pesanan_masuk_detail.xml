@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.PageAdmin.Dashboard.AdmDetailDashboard">
+    tools:context=".Activity.PageAdmin.Dashboard.PesananMasuk.AdmPesananMasukDetail">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -75,6 +75,15 @@
         android:paddingTop="20dp"
         android:gravity="center_horizontal"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card1"
@@ -187,9 +196,36 @@
                     android:layout_height="wrap_content"
                     app:met_floatingLabel="normal"
                     android:hint="Status"
-                    android:text="Di Jemput"
+                    android:text="Di Konfirmasi"
                     android:textAlignment="center"
                     android:id="@+id/txt_status_dtl"
+                    android:visibility="gone"/>
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:met_floatingLabel="normal"
+                    android:textAlignment="center"
+                    android:id="@+id/txt_tglSkrg_dtl"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_set_id"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_set_nama"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_set_level"
+                    android:text="admin"
                     android:visibility="gone"/>
 
             </LinearLayout>
@@ -202,13 +238,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/card2"
             android:background="@drawable/circle_primary"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginRight="80dp"
             android:layout_marginLeft="80dp"
             android:text="Konfirmasi"
             android:textColor="@android:color/white"
             android:textStyle="bold"/>
 
+            </RelativeLayout>
+
+        </ScrollView>
+
     </RelativeLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

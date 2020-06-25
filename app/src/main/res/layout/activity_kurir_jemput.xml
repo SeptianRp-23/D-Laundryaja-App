@@ -7,11 +7,75 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PageKurir.DiJemput.KurirJemputActivity">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:id="@+id/toolbar">
+
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_left"
+            android:id="@+id/back"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jemput Pesanan"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kurrir Page"
-        android:textSize="50sp"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/txtSts"
+        android:text="Di Konfirmasi"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_tired"
+        android:layout_centerInParent="true"
+        android:id="@+id/img_tired"
+        android:visibility="visible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtKosong"
+        android:layout_below="@+id/img_tired"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:text="Belum Ada Tugas Nih !"
+        android:visibility="visible"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <ListView
+            android:id="@+id/myListviewKurirJmpt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

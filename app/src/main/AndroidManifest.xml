@@ -12,13 +12,47 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.PageKurir.Diantar.KurirAntarDetail"></activity>
-        <activity android:name=".Activity.PageKurir.Diantar.KurirAntarActivity" />
-        <activity android:name=".Activity.PageKurir.KurirDashboardActivity"
-            android:theme="@style/Custom"/>
-        <activity android:name=".Activity.PageKurir.DiJemput.KurirJemputDetail" />
+        <activity android:name=".Activity.PageAdmin.Dashboard.PesananSelesai.AdmPesananTrackDetail"
+            android:theme="@style/Custom"></activity>
         <activity
-            android:name=".Activity.PageAdmin.Dashboard.AdmDetailDashboard"
+            android:name=".Activity.PageAdmin.Dashboard.Profile.AdmProfileActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageAdmin.Dashboard.PesananSelesai.AdmPesananTrackActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageAdmin.Dashboard.PesananProses.AdmPesananProsesActivivty"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageAdmin.Dashboard.Laporan.AdmLaporanActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageAdmin.Dashboard.PesananMasuk.AdmPesananMasukDetail"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageAdmin.Dashboard.PesananMasuk.AdmPesananMasukActivity"
+            android:theme="@style/Custom" />
+        <activity android:name=".Activity.PageAdmin.Dashboard.AdmMenuDashboard" />
+        <activity
+            android:name=".Activity.PageKurir.Tugas.KurirTugasActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageKurir.Diantar.KurirAntarDetail"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageKurir.DiJemput.KurirJemputActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageKurir.Akun.KurirAkunActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageKurir.Diantar.KurirAntarActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageKurir.KurirDashboardActivity"
+            android:theme="@style/Custom" />
+        <activity
+            android:name=".Activity.PageKurir.DiJemput.KurirJemputDetail"
             android:theme="@style/Custom" />
         <activity
             android:name=".Activity.PageUser.Dashboard.UserPemesananActivity"
@@ -38,11 +72,6 @@
         <activity
             android:name=".Activity.PageUser.Status.UserStatusActivity"
             android:theme="@style/Custom" />
-        <activity android:name=".Activity.PageKurir.DiJemput.KurirJemputActivity" />
-        <activity android:name=".Activity.PageKurir.Akun.KurirAkunActivity" />
-        <activity android:name=".Activity.PageAdmin.Laporan.AdmLaporanActivity" />
-        <activity android:name=".Activity.PageAdmin.Akun.AdmAkunActivity" />
-        <activity android:name=".Activity.PageAdmin.Dashboard.AdmDashboardActivity" />
         <activity
             android:name=".Register.RegisterActivity"
             android:theme="@style/Custom" />

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.android.dlaundryaja.Activity.PageAdmin.Akun.AdmAkunActivity;
+import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.AdmMenuDashboard;
 import com.android.dlaundryaja.Activity.PageKurir.Akun.KurirAkunActivity;
 import com.android.dlaundryaja.Activity.PageUser.Account.UserAccountActivity;
 import com.android.dlaundryaja.Login.LoginActivity;
@@ -91,7 +91,7 @@ public class SessionManager {
         editor.commit();
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
-        ((AdmAkunActivity)context).finish();
+        ((AdmMenuDashboard)context).finish();
     }
     public void LogoutKurir(){
         editor.clear();

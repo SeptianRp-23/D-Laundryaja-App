@@ -36,11 +36,13 @@ public class PesananAdapter extends ArrayAdapter<DataPesanan> {
         TextView tvJen = view.findViewById(R.id.txt_jenis);
         TextView tvName = view.findViewById(R.id.txt_nama);
         TextView tvTgl = view.findViewById(R.id.txt_tanggal);
+        TextView tvidPemesan = view.findViewById(R.id.txt_id_pemesan);
 
         tvInv.setText(arrayListDataPesanan.get(position).getInvoice());
         tvJen.setText(arrayListDataPesanan.get(position).getJenis());
         tvName.setText(arrayListDataPesanan.get(position).getTanggal());
         tvTgl.setText(arrayListDataPesanan.get(position).getNama());
+        tvidPemesan.setText(arrayListDataPesanan.get(position).getId_user());
 
         return view;
     }
