@@ -215,6 +215,30 @@
                 android:text="Menunggu Konfirmasi"
                 android:visibility="gone"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/img_check"
+                    android:src="@drawable/ic_check_black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Benar Saya Memesan, dan Menyutujui Ketentuan yang Ada Pada Aplikasi!"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

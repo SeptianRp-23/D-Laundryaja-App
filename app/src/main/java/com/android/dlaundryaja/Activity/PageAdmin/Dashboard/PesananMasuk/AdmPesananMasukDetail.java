@@ -43,7 +43,7 @@ public class AdmPesananMasukDetail extends AppCompatActivity {
     SessionManager sessionManager;
     SharedPreferences sharedPreferences;
     String getId, getNama, getLevel;
-    TextView SetId, SetNama, SetLevel;
+    TextView SetId, SetNama, SetLevel, etStatusTrack;
     String myFormat = "dd-MM-yyy hh:mm a";
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
     private String StatusAPI = Api.URL_API + "editStatus.php";
@@ -72,6 +72,7 @@ public class AdmPesananMasukDetail extends AppCompatActivity {
         SetNama = findViewById(R.id.txt_set_nama);
         SetLevel = findViewById(R.id.txt_set_level);
         etTglSkrng = findViewById(R.id.txt_tglSkrg_dtl);
+        etStatusTrack = findViewById(R.id.txt_set_track);
 
         getId = user.get(SessionManager.ID);
         getNama = user.get(SessionManager.NAME);
@@ -117,12 +118,6 @@ public class AdmPesananMasukDetail extends AppCompatActivity {
     }
 
     private void SaveEditDetail() {
-
-//        final String merk = this.etMerk.getText().toString().trim();
-//        final String nama = this.etNama.getText().toString().trim();
-//        final String warna = this.etWarna.getText().toString().trim();
-//        final String plat = this.etPlat.getText().toString().trim();
-//        final String tahun = this.etTahun.getText().toString().trim();
         final String status = this.etStatus.getText().toString().trim();
         final String invoice = this.etInvoice.getText().toString().trim();
 
@@ -175,13 +170,11 @@ public class AdmPesananMasukDetail extends AppCompatActivity {
 
     }
 
-
-
     private void InsertTracking() {
         final String txtInvoice = etInvoice.getText().toString().trim();
         final String txtJenis = etJenis.getText().toString().trim();
         final String txtTgl = etTglSkrng.getText().toString().trim();
-        final String txtStatus = etStatus.getText().toString().trim();
+        final String txtStatus = etStatusTrack.getText().toString().trim();
         final String txtID = SetId.getText().toString().trim();
         final String txtNama = SetNama.getText().toString().trim();
         final String txtLevel = SetLevel.getText().toString().trim();

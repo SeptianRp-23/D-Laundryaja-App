@@ -63,6 +63,26 @@
         android:text="Di Antar"
         android:visibility="gone"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_set_level"
+        android:text="admin"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_set_id"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_set_nama"
+        android:visibility="gone"/>
+
         <ListView
             android:id="@+id/myListAdmProses"
             android:layout_width="match_parent"

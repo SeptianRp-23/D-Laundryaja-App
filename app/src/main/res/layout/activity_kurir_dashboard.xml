@@ -13,14 +13,14 @@
         android:background="@color/colorPrimary"
         android:id="@+id/toolbar">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/d_laundryaja"
-                android:fontFamily="@font/montserrat"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/d_laundryaja"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
     </androidx.appcompat.widget.Toolbar>
 

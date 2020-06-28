@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,256 +7,242 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PageKurir.Diantar.KurirAntarDetail">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:background="@color/colorPrimary"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:id="@+id/toolbar">-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:src="@drawable/ic_left"-->
-<!--            android:id="@+id/back"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:layout_marginLeft="5dp"-->
-<!--            />-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Detail Antar"-->
-<!--            android:textSize="20sp"-->
-<!--            android:layout_gravity="center_vertical"-->
-<!--            android:textColor="@android:color/white"-->
-<!--            android:textStyle="bold"/>-->
-
-<!--    </LinearLayout>-->
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Detail Pesanan"-->
-<!--        android:textSize="24sp"-->
-<!--        android:textColor="@color/colorPrimary"-->
-<!--        android:textStyle="bold"-->
-<!--        android:layout_below="@+id/toolbar"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:id="@+id/txt_detail"/>-->
-
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_below="@+id/txt_detail">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:gravity="center"-->
-<!--            android:layout_marginTop="10dp">-->
-
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/card1"-->
-<!--                android:layout_width="300dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:cardCornerRadius="15dp"-->
-<!--                app:cardElevation="5dp">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:paddingRight="30dp"-->
-<!--                    android:paddingLeft="30dp">-->
-
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Invoice"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_inv_dtl"/>-->
-
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Jenis"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_jenis_dtl"/>-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:id="@+id/appbarlayout_id">
 
 
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Tanggal"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_tanggal_dtl"/>-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/collapsingtoolbar_id"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            app:title="Data Pelanggan"
+            android:background="?attr/colorPrimary"
+            app:expandedTitleMarginStart="55dp"
+            app:expandedTitleMarginEnd="64dp">
 
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Telp"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_telp_dtl"/>-->
 
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Lokasi"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_lokasi_dtl"/>-->
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:background="?attr/colorPrimary">
+            </androidx.appcompat.widget.Toolbar>
 
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Alamat"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_alamat_dtl"/>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bartop"
+                android:layout_marginTop="-30dp">
 
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Detail"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_detail_dtl"/>-->
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/logo"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_centerHorizontal="true"
+                    app:lottie_autoPlay="true"
+                    android:layout_marginTop="20dp"
+                    app:lottie_fileName="laundry-animation.json"
+                    app:lottie_loop="true"/>
 
-<!--                </LinearLayout>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/d_laundryaja"
+                    android:layout_below="@id/logo"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:textSize="18sp"
+                    android:layout_marginTop="-50dp"
+                    android:layout_centerHorizontal="true"/>
 
-<!--            </androidx.cardview.widget.CardView>-->
+            </RelativeLayout>
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:layout_below="@+id/card1"-->
-<!--                android:id="@+id/card2"-->
-<!--                android:layout_width="300dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:cardCornerRadius="15dp"-->
-<!--                app:cardElevation="5dp"-->
-<!--                android:layout_marginTop="10dp">-->
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:paddingRight="30dp"-->
-<!--                    android:paddingLeft="30dp">-->
+    </com.google.android.material.appbar.AppBarLayout>
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="horizontal">-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:layout_below="@+id/bartop"
+        android:paddingTop="20dp"
+        android:gravity="center_horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-<!--                        <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            app:met_floatingLabel="normal"-->
-<!--                            android:hint="Jumlah"-->
-<!--                            android:layout_weight="2"-->
-<!--                            android:inputType="numberDecimal"-->
-<!--                            android:textAlignment="center"-->
-<!--                            android:imeOptions="actionSend"-->
-<!--                            android:id="@+id/txt_ket_dtl"/>-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-<!--                        <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            app:met_floatingLabel="normal"-->
-<!--                            android:hint="KG/PCS"-->
-<!--                            android:layout_weight="2"-->
-<!--                            android:textAlignment="center"-->
-<!--                            android:id="@+id/txt_berat"/>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-<!--                    </LinearLayout>-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
 
-<!--                    <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:met_floatingLabel="normal"-->
-<!--                        android:hint="Harga"-->
-<!--                        android:textAlignment="center"-->
-<!--                        android:id="@+id/txt_harga_dtl"/>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp">
 
-<!--                </LinearLayout>-->
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="Invoice"
+                        android:textAlignment="center"
+                        android:id="@+id/txt_inv_antr"/>
 
-<!--            </androidx.cardview.widget.CardView>-->
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="ID User"
+                        android:textAlignment="center"
+                        android:id="@+id/txt_id_antr"/>
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_below="@+id/card2">-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="id"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textColor="@color/colorPrimary"-->
-<!--                    android:id="@+id/id_kurir"-->
-<!--                    android:textStyle="bold"/>-->
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="Nama"
+                        android:textAlignment="center"
+                        android:id="@+id/txt_nama_antr"/>
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="nama"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textColor="@color/colorPrimary"-->
-<!--                    android:id="@+id/id_nama"-->
-<!--                    android:textStyle="bold"/>-->
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="Telp"
+                        android:textAlignment="center"
+                        android:id="@+id/txt_telp_antr"/>
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Di Proses"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textColor="@color/colorPrimary"-->
-<!--                    android:id="@+id/id_status"-->
-<!--                    android:textStyle="bold"/>-->
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="Alamat"
+                        android:textAlignment="center"
+                        android:id="@+id/txt_alamat_antr"/>
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Di Proses"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textColor="@color/colorPrimary"-->
-<!--                    android:id="@+id/txtHarga"-->
-<!--                    android:textStyle="bold"/>-->
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="Lokasi"
+                        android:textAlignment="center"
+                        android:id="@+id/txt_lokasi_antr"/>
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="tgl"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textColor="@color/colorPrimary"-->
-<!--                    android:id="@+id/tanggal_skrng"-->
-<!--                    android:textStyle="bold"/>-->
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:met_floatingLabel="normal"
+                        android:hint="Detail"
+                        android:textAlignment="center"
+                        android:id="@+id/txt_detail_antr"/>
 
-<!--            </LinearLayout>-->
+                </LinearLayout>
 
-<!--            <Button-->
-<!--                android:id="@+id/konfirmasi"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/card2"-->
-<!--                android:background="@drawable/circle_primary"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginRight="80dp"-->
-<!--                android:layout_marginLeft="80dp"-->
-<!--                android:text="Konfirmasi"-->
-<!--                android:visibility="gone"-->
-<!--                android:textColor="@android:color/white"-->
-<!--                android:textStyle="bold"/>-->
+            </androidx.cardview.widget.CardView>
 
-<!--        </LinearLayout>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card1"
+                    android:orientation="vertical">
 
-<!--    </ScrollView>-->
 
-</RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selesai"
+                        android:id="@+id/txt_status_antr"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_tglSkrg_antr"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_tglbln_antr"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_jenis_pesanan"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_status_tugas_antr"
+                        android:text="Di Antar"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_id_kurir"
+                        android:text=""
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_nama_kurir"
+                        android:text=""
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_level_kurir"
+                        android:text="kurir"
+                        android:visibility="visible"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/kirim_antr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card1"
+                    android:background="@drawable/circle_primary"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="80dp"
+                    android:layout_marginLeft="80dp"
+                    android:text="Submit"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

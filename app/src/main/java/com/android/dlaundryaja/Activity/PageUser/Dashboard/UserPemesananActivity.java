@@ -36,7 +36,7 @@ public class UserPemesananActivity extends AppCompatActivity {
     MaterialEditText etId, etJenis, etTanggal, etNama, etTelp, etAlamat, etDetail, ethargapesanan, etSatuan;
     String myFormat = "dd-MM-yyy hh:mm a";
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-    ImageView btEdit;
+    ImageView btEdit, btCheck;
     Spinner etLokasi;
     SessionManager sessionManager;
     String getId, getNama, getTelp, getAlamat;
@@ -68,6 +68,7 @@ public class UserPemesananActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.stat);
         ethargapesanan = findViewById(R.id.hargapesanan);
         etSatuan = findViewById(R.id.txt_satuan);
+        btCheck = findViewById(R.id.img_check);
 
         etId.setText(getId);
         etNama.setText(getNama);

@@ -71,6 +71,16 @@
         android:text="Belum Ada Pesanan!"
         android:visibility="visible"/>
 
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:met_floatingLabel="normal"
+        android:hint="Status"
+        android:text="Di Konfirmasi"
+        android:textAlignment="center"
+        android:id="@+id/txt_status_cnfrm"
+        android:visibility="gone"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.PesananMasuk.AdmPesananMasukDetail;
 import com.android.dlaundryaja.Activity.PageKurir.KurirDashboardActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Server.Local.Api;
@@ -39,7 +40,7 @@ import java.util.Map;
 public class KurirJemputDetail extends AppCompatActivity {
 
     MaterialEditText etId, etJenis, etTanggal,etTelp, etLokasi, etAlamat, etDetail, etHarga, etKet, etberat;
-    TextView txtIdKurir, txtStatus, txtNama, tglSkrg, tvHarga, txtgetNama, txtBulanSkrg;
+    TextView txtIdKurir, txtStatus, txtNama, tglSkrg, tvHarga, txtgetNama, txtBulanSkrg, txtLvl, txtStatusTugas;
     Button btKirim;
     CardView cardView;
     ImageView imgShow, imgHide;
@@ -51,6 +52,7 @@ public class KurirJemputDetail extends AppCompatActivity {
     SimpleDateFormat sdf2 = new SimpleDateFormat(myBulan, Locale.US);
     private String InsertTugas = Api.URL_API + "insertTugas.php";
     private String EditStatus = Api.URL_API + "editStatus.php";
+    private String InsertTracking = Api.URL_API + "insertTracking.php";
     int position;
 
     @Override
@@ -84,6 +86,8 @@ public class KurirJemputDetail extends AppCompatActivity {
         imgShow = findViewById(R.id.show);
         imgHide = findViewById(R.id.hide);
         cardView = findViewById(R.id.card1);
+        txtLvl = findViewById(R.id.txt_set_level);
+        txtStatusTugas = findViewById(R.id.txt_status_tugas);
 
         imgShow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +120,7 @@ public class KurirJemputDetail extends AppCompatActivity {
 //                Toast.makeText(KurirJemputDetail.this, "Pressed", Toast.LENGTH_SHORT).show();
                 InsertData();
                 SaveEditDetail();
+                InsertTracking();
                 Intent intent = new Intent(KurirJemputDetail.this, KurirDashboardActivity.class);
                 startActivity(intent);
             }
@@ -190,7 +195,7 @@ public class KurirJemputDetail extends AppCompatActivity {
         final String txtkurir = txtIdKurir.getText().toString().trim();
         final String txtnama = txtNama.getText().toString().trim();
         final String txtTgl = tglSkrg.getText().toString().trim();
-        final String txtStat = txtStatus.getText().toString().trim();
+        final String txtStat = txtStatusTugas.getText().toString().trim();
         final String txtBulan = txtBulanSkrg.getText().toString().trim();
 
         StringRequest request = new StringRequest(Request.Method.POST, InsertTugas,
@@ -253,22 +258,19 @@ public class KurirJemputDetail extends AppCompatActivity {
                             String success = jsonObject.getString("success");
 
                             if (success.equals("1")){
-                                Toast.makeText(KurirJemputDetail.this, "Success!", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(KurirJemputDetail.this, "Success!", Toast.LENGTH_SHORT).show();
 //                                sessionManager.createSession(email, name, id);
+                                System.out.println("Berhasil");
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(KurirJemputDetail.this, "Error"+e.toString(), Toast.LENGTH_SHORT).show();
+                            System.out.println(e.toString());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressDialog.dismiss();
-                        Toast.makeText(KurirJemputDetail.this, "Error"+error.toString(), Toast.LENGTH_SHORT).show();
-
+                        System.out.println(error.toString());
                     }
                 })
         {
@@ -284,5 +286,49 @@ public class KurirJemputDetail extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
+    }
+
+    private void InsertTracking() {
+        final String txtInvoice = etId.getText().toString().trim();
+        final String txtJenis = etJenis.getText().toString().trim();
+        final String txtTgl = tglSkrg.getText().toString().trim();
+        final String txtStatusProses = txtStatus.getText().toString().trim();
+        final String txtID = txtIdKurir.getText().toString().trim();
+        final String txtNamaKurir = txtNama.getText().toString().trim();
+        final String txtLevel = txtLvl.getText().toString().trim();
+
+        StringRequest request = new StringRequest(Request.Method.POST, InsertTracking,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.equalsIgnoreCase("success")) {
+                            System.out.println("Berhasil");
+                        } else {
+                            System.out.println("Gagal");
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println(error.toString());
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("invoice", txtInvoice);
+                params.put("jenis", txtJenis);
+                params.put("tanggal", txtTgl);
+                params.put("id_user", txtID);
+                params.put("nama_user", txtNamaKurir);
+                params.put("level", txtLevel);
+                params.put("status", txtStatusProses);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(KurirJemputDetail.this);
+        requestQueue.add(request);
     }
 }

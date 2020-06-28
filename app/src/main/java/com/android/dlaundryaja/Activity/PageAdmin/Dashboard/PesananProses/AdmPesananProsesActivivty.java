@@ -40,14 +40,15 @@ public class AdmPesananProsesActivivty extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     SessionManager sessionManager;
-    String getID;
+    String getID, getNama;
     ListView listProsesAdm;
     PesananAdapter pesananAdapter;
     public static ArrayList<DataPesanan> dataPesananArrayList = new ArrayList<>();
     private String PesananProses = Api.URL_API + "admGet_diProses.php";
     private String StatusUpdate = Api.URL_API + "editStatus.php";
+    private String InsertTracking = Api.URL_API + "insertTracking.php";
     DataPesanan dataPesanan;
-    TextView tvSts, txtKosong;
+    TextView tvSts, txtKosong, txtLevel, txtIdUser, txtNamaUser;
     ImageView btBack, imgKosong;
 
     @Override
@@ -60,6 +61,7 @@ public class AdmPesananProsesActivivty extends AppCompatActivity {
 
         HashMap<String, String> user = sessionManager.getUserDetail();
         getID = user.get(SessionManager.ID);
+        getNama = user.get(SessionManager.NAME);
 
         listProsesAdm = findViewById(R.id.myListAdmProses);
         pesananAdapter = new PesananAdapter(this, dataPesananArrayList);
@@ -68,6 +70,12 @@ public class AdmPesananProsesActivivty extends AppCompatActivity {
         btBack = findViewById(R.id.back);
         imgKosong = findViewById(R.id.img_tired);
         txtKosong = findViewById(R.id.txtKosong);
+        txtLevel = findViewById(R.id.txt_set_level);
+        txtIdUser = findViewById(R.id.txt_set_id);
+        txtNamaUser = findViewById(R.id.txt_set_nama);
+
+        txtIdUser.setText(getID);
+        txtNamaUser.setText(getNama);
 
         receiveData();
 
@@ -135,6 +143,49 @@ public class AdmPesananProsesActivivty extends AppCompatActivity {
                 };
                 RequestQueue requestQueue = Volley.newRequestQueue(AdmPesananProsesActivivty.this);
                 requestQueue.add(stringRequest);
+
+                //insert
+                final String Tvinvoice = dataPesananArrayList.get(position).getInvoice();
+                final String TvJenis = dataPesananArrayList.get(position).getJenis();
+                final String TvTanggal = dataPesananArrayList.get(position).getTanggal();
+                final String TvID = txtIdUser.getText().toString().trim();
+                final String TvNama = txtNamaUser.getText().toString().trim();
+                final String TvLevel = txtLevel.getText().toString().trim();
+                final String TvStatus = tvSts.getText().toString().trim();
+
+                StringRequest request = new StringRequest(Request.Method.POST, InsertTracking,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if (response.equalsIgnoreCase("success")) {
+                                    Toast.makeText(AdmPesananProsesActivivty.this, "Success", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(AdmPesananProsesActivivty.this, "Gagal", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(AdmPesananProsesActivivty.this, "Error Connection" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("invoice", Tvinvoice);
+                        params.put("jenis", TvJenis);
+                        params.put("tanggal", TvTanggal);
+                        params.put("id_user", TvID);
+                        params.put("nama_user", TvNama);
+                        params.put("level", TvLevel);
+                        params.put("status", TvStatus);
+                        return params;
+                    }
+                };
+                RequestQueue rqQ = Volley.newRequestQueue(AdmPesananProsesActivivty.this);
+                rqQ.add(request);
             }
         });
     }

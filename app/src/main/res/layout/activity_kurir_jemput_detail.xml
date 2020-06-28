@@ -296,6 +296,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Di Jemput"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/txt_status_tugas"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Di Proses"
             android:textSize="20sp"
             android:textColor="@color/colorPrimary"
@@ -319,6 +328,13 @@
             android:textColor="@color/colorPrimary"
             android:id="@+id/bulan_skrng"
             android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_set_level"
+            android:text="kurir"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

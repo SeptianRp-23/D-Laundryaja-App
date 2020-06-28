@@ -43,7 +43,6 @@ public class AdmProfileActivity extends AppCompatActivity {
         cdAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
                 btSimpanAdd.setVisibility(View.VISIBLE);
                 menu.setVisibility(View.GONE);
                 formAdd.setVisibility(View.VISIBLE);
@@ -54,7 +53,6 @@ public class AdmProfileActivity extends AppCompatActivity {
         cdEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
                 btSimpanEdit.setVisibility(View.VISIBLE);
                 menu.setVisibility(View.GONE);
             }

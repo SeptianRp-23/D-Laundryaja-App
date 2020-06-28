@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,15 +44,17 @@ public class AdmPesananMasukActivity extends AppCompatActivity {
     private Toast backToast;
     SharedPreferences sharedPreferences;
     SessionManager sessionManager;
-    String getID;
+    String getID, getNama;
     ListView listViewAdm;
     PesananAdapter pesananAdapter;
     public static ArrayList<DataPesanan> dataPesananArrayList = new ArrayList<>();
     private String DataPesananApi = Api.URL_API + "dataPesanan.php";
+    private String StatusAPI = Api.URL_API + "editStatus.php";
     private String InsertTrack = Api.URL_API + "insertTracking.php";
     DataPesanan dataPesanan;
     TextView tvSts, tvLvl, txtKosong;
     ImageView btBack, imgKosong;
+    MaterialEditText etStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class AdmPesananMasukActivity extends AppCompatActivity {
 
         HashMap<String, String> user = sessionManager.getUserDetail();
         getID = user.get(SessionManager.ID);
+        getNama = user.get(SessionManager.NAME);
 
         listViewAdm = findViewById(R.id.myListviewAdm);
         pesananAdapter = new PesananAdapter(this, dataPesananArrayList);
@@ -72,6 +76,7 @@ public class AdmPesananMasukActivity extends AppCompatActivity {
         btBack = findViewById(R.id.back);
         imgKosong = findViewById(R.id.img_tired);
         txtKosong = findViewById(R.id.txtKosong);
+        etStatus = findViewById(R.id.txt_status_cnfrm);
 
         btBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +96,43 @@ public class AdmPesananMasukActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), AdmPesananMasukDetail.class)
                         .putExtra("position", position));
 
+                final String status = etStatus.getText().toString().trim();
+                final String invoice = dataPesananArrayList.get(position).getInvoice();
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, StatusAPI,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String success = jsonObject.getString("success");
+
+                                    if (success.equals("1")){
+                                        System.out.println("Berhasi");
+                                    }
+                                } catch (JSONException e) {
+                                    System.out.println(e.toString());
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                System.out.println(error.toString());
+                            }
+                        })
+                {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("status", status);
+                        params.put("invoice", invoice);
+                        return params;
+                    }
+                };
+                RequestQueue requestQueue = Volley.newRequestQueue(AdmPesananMasukActivity.this);
+                requestQueue.add(stringRequest);
+
 //                final String status = this.tvSts.getText().toString().trim();
                 final ProgressDialog progressDialog = new ProgressDialog(AdmPesananMasukActivity.this);
                 progressDialog.setMessage("Please Wait...");
@@ -109,8 +151,6 @@ public class AdmPesananMasukActivity extends AppCompatActivity {
                             public void onResponse(String response) {
                                 if (response.equalsIgnoreCase("success")) {
                                     Toast.makeText(AdmPesananMasukActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(AdmPesananMasukDetail.this, UserDashboardActivity.class);
-//                            startActivity(intent);
                                 } else {
                                     Toast.makeText(AdmPesananMasukActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
                                 }
@@ -136,8 +176,8 @@ public class AdmPesananMasukActivity extends AppCompatActivity {
                         return params;
                     }
                 };
-                RequestQueue requestQueue = Volley.newRequestQueue(AdmPesananMasukActivity.this);
-                requestQueue.add(request);
+                RequestQueue rqQ = Volley.newRequestQueue(AdmPesananMasukActivity.this);
+                rqQ.add(request);
             }
 //                progressDialog.dismiss();
 //                startActivity(new Intent(getApplicationContext(), DetailMobilActivity.class)
