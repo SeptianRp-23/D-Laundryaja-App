@@ -39,18 +39,19 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_order" />
+                    android:src="@drawable/ic_laundrytime"/>
 
                 <TextView
                     android:id="@+id/txt_invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:text="Invoice"
                     android:textColor="#fff"
                     android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
@@ -68,8 +69,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_jenis"
                 android:text="Jenis"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -82,15 +82,13 @@
                     android:id="@+id/txt_nama"
                     android:layout_alignParentLeft="true"
                     android:text="Nama"
-                    android:textSize="16sp"
-                    />
+                    android:textSize="16sp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_right"
-                    android:layout_alignParentRight="true"
-                    />
+                    android:layout_alignParentRight="true"/>
 
             </RelativeLayout>
 

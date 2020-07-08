@@ -23,6 +23,7 @@ import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.PesananMasuk.AdmPesa
 import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.PesananProses.AdmPesananProsesActivivty;
 import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.PesananSelesai.AdmPesananTrackActivity;
 import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.Profile.AdmProfileActivity;
+import com.android.dlaundryaja.Activity.PageUser.Account.UserAccountActivity;
 import com.android.dlaundryaja.Login.LoginActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Server.Local.Api;
@@ -33,6 +34,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,8 +66,8 @@ public class AdmMenuDashboard extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("UserInfo",MODE_PRIVATE);
         HashMap<String, String> user = sessionManager.getUserDetail();
         getId = user.get(SessionManager.ID);
-
         getNama = user.get(SessionManager.NAME);
+
         alertjemput = findViewById(R.id.img_alert1);
         alertantar = findViewById(R.id.img_alert2);
         cNew = findViewById(R.id.card_pesanan_baru);
@@ -78,7 +81,21 @@ public class AdmMenuDashboard extends AppCompatActivity {
         bt_Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Logout();
+                new SweetAlertDialog(AdmMenuDashboard.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText("Hai "+getNama)
+                        .setContentText("Kamu Beneran Mau Logout ?")
+                        .setCancelText("Engga")
+                        .setConfirmText("Iya Nih")
+                        .setCustomImage(R.drawable.ic_question)
+                        .showCancelButton(true)
+                        .setCancelClickListener(null)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                Logout();
+                            }
+                        })
+                        .show();
             }
         });
         cNew.setOnClickListener(new View.OnClickListener() {

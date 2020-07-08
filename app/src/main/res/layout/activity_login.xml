@@ -115,7 +115,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="@android:color/transparent"
                 android:textColor="@color/colorPrimary"
-                android:id="@+id/show_regist"
+                android:id="@+id/register"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <Button

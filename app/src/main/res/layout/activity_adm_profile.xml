@@ -36,292 +36,335 @@
 
     </LinearLayout>
 
-<!--    Form Edit-->
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="30dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/card"
-        android:visibility="visible"
-        app:cardElevation="2dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="20dp">
+            android:gravity="center">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/edt_txt_id"
-                android:hint="User ID"/>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/edt_txt_nama"
-                android:hint="Nama"/>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/edt_txt_email"
-                android:hint="Email"/>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/edt_txt_tgl"
-                android:hint="Tanggal"/>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/edt_txt_telp"
-                android:hint="Telp"/>
-
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/edt_txt_alamat"
-                android:hint="Alamat"
-                android:layout_marginBottom="20dp"/>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-<!--    End Form Edit-->
-
-
-    <!--    Form Add User-->
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="30dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/card1"
-        android:visibility="gone"
-        app:cardElevation="2dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="20dp">
-
-            <TextView
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tambah User"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:id="@+id/pembungkus">
+
+                <!--    Form Edit-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="30dp"
+                    android:id="@+id/card"
+                    android:visibility="visible"
+                    app:cardElevation="2dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="20dp">
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/edt_txt_id"
+                            android:hint="User ID"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/edt_txt_nama"
+                            android:hint="Nama"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/edt_txt_email"
+                            android:hint="Email"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/edt_txt_tgl"
+                            android:hint="Tanggal"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/edt_txt_telp"
+                            android:hint="Telp"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/edt_txt_alamat"
+                            android:hint="Alamat"
+                            android:layout_marginBottom="20dp"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <!--    End Form Edit-->
+
+
+                <!--    Form Add User-->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="30dp"
+                    android:id="@+id/card1"
+                    android:visibility="gone"
+                    app:cardElevation="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tambah User"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/montserrat"
+                            android:textSize="16sp"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/add_txt_nama"
+                            android:hint="Nama"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/add_txt_email"
+                            android:hint="Email"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.rengwuxian.materialedittext.MaterialEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:met_floatingLabel="normal"
+                                android:enabled="false"
+                                android:id="@+id/add_txt_level"
+                                android:layout_weight="1"
+                                android:hint="Level"/>
+
+                            <Spinner
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/add_spinner"
+                                android:layout_gravity="center_vertical"
+                                android:backgroundTint="@color/colorPrimary"
+                                android:entries="@array/posisi"
+                                android:layout_weight="3"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.rengwuxian.materialedittext.MaterialEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:met_floatingLabel="normal"
+                                android:id="@+id/add_txt_tgl"
+                                android:enabled="false"
+                                android:layout_weight="1"
+                                android:hint="Tanggal"/>
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/add_img_tgl"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_tgl"
+                                android:layout_weight="4"/>
+
+                        </LinearLayout>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/add_txt_telp"
+                            android:hint="Telp"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/add_txt_alamat"
+                            android:hint="Alamat"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/add_txt_password"
+                            android:hint="password"/>
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:met_floatingLabel="normal"
+                            android:id="@+id/add_txt_cpass"
+                            android:hint="Confirm Password"
+                            android:layout_marginBottom="20dp"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <!--    End Form Add User-->
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/pembungkus"
+                android:id="@+id/linearMenu"
+                android:visibility="visible"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/montserrat"
-                android:textSize="16sp"/>
+                android:layout_marginTop="3dp">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/add_txt_nama"
-                android:hint="Nama"/>
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/add_txt_email"
-                android:hint="Email"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:met_floatingLabel="normal"
-                    android:id="@+id/add_txt_level"
-                    android:layout_weight="1"
-                    android:hint="Level"/>
-
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/add_spinner"
-                    android:layout_gravity="center_vertical"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="90dp"
+                    app:cardElevation="4dp"
                     android:backgroundTint="@color/colorPrimary"
-                    android:layout_weight="4"/>
-            </LinearLayout>
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/cardEdit">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
 
-                <com.rengwuxian.materialedittext.MaterialEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:met_floatingLabel="normal"
-                    android:id="@+id/add_txt_tgl"
-                    android:layout_weight="1"
-                    android:hint="Tanggal Lahir"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_user_profiles"
+                            android:layout_gravity="center"/>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Edit"
+                            android:textSize="10dp"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:textColor="@android:color/white"/>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/add_img_tgl"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_tgl"
-                    android:layout_weight="4"/>
+                    </LinearLayout>
 
-            </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/add_txt_telp"
-                android:hint="Telp"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:cardCornerRadius="90dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:id="@+id/cardAdd">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:met_floatingLabel="normal"
-                android:id="@+id/add_txt_alamat"
-                android:hint="Alamat"
-                android:layout_marginBottom="20dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
 
-        </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_new_add"
+                            android:layout_gravity="center"/>
 
-    </androidx.cardview.widget.CardView>
-    <!--    End Form Add User-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add User"
+                            android:textSize="10dp"
+                            android:textStyle="bold"
+                            android:layout_gravity="center"
+                            android:textColor="@android:color/white"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/card"
-        android:id="@+id/linearMenu"
-        android:visibility="visible"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true">
+                    </LinearLayout>
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:cardCornerRadius="90dp"
-            app:cardElevation="4dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:layout_below="@+id/card"
-            android:layout_marginRight="10dp"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/cardEdit">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_user_profiles"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"/>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            app:cardCornerRadius="90dp"
-            app:cardElevation="4dp"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:layout_below="@+id/card"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/cardAdd">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:background="@drawable/circle_primary"
+                android:layout_gravity="center_horizontal"
+                android:text="Simpan"
+                android:id="@+id/update"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_new_add"
-                    android:layout_gravity="center"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Add User"
-                    android:textSize="10dp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_primary"
+                android:layout_gravity="center_horizontal"
+                android:text="Simpan"
+                android:id="@+id/simpan"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"/>
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle_primary"
-        android:layout_below="@+id/card"
-        android:layout_centerHorizontal="true"
-        android:text="Simpan"
-        android:id="@+id/update"
-        android:textStyle="bold"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"/>
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle_primary"
-        android:layout_below="@+id/card1"
-        android:layout_centerHorizontal="true"
-        android:text="Simpan"
-        android:id="@+id/simpan"
-        android:textStyle="bold"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"/>
+    </ScrollView>
 
 </RelativeLayout>

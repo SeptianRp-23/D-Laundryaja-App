@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -121,9 +122,14 @@ public class UserPemesananActivity extends AppCompatActivity {
                 final String mDetail = etDetail.getText().toString().trim();
 
                 if (mNama.isEmpty() || mTelp.isEmpty() || mAlamat.isEmpty() || mDetail.isEmpty()){
-                Toast.makeText(UserPemesananActivity.this, "Field Belum Terpenuhi", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(UserPemesananActivity.this, "Field Belum Terpenuhi", Toast.LENGTH_SHORT).show();
+                    new SweetAlertDialog(UserPemesananActivity.this, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Oops..")
+                            .setContentText("Pastikan Data Terisi Lengkap !")
+                            .show();
             }else{
                     InsertData();
+                    Toast.makeText(UserPemesananActivity.this, "Click", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -184,6 +190,7 @@ public class UserPemesananActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserPemesananActivity.this, UserDashboardActivity.class));
+                overridePendingTransition(0,0);
             }
         });
         //end
@@ -210,24 +217,41 @@ public class UserPemesananActivity extends AppCompatActivity {
             final String txtHarga = ethargapesanan.getText().toString().trim();
             final String txtKet = tvKet.getText().toString().trim();
             final String txtStatus = tvStatus.getText().toString().trim();
+            final SweetAlertDialog berhasil = new SweetAlertDialog(UserPemesananActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Berhasil")
+                    .setContentText("Data Berhasil Disimpan")
+                    .setConfirmText("OKE")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            Intent intent = new Intent(UserPemesananActivity.this, UserDashboardActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                    });
+
+            final SweetAlertDialog gagal = new SweetAlertDialog(UserPemesananActivity.this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Oops..")
+                    .setContentText("Internet Tidak Stabil..");
 
             StringRequest request = new StringRequest(Request.Method.POST, InsertData,
                 new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.equalsIgnoreCase("success")) {
-                        Toast.makeText(UserPemesananActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UserPemesananActivity.this, UserDashboardActivity.class);
-                        startActivity(intent);
+//                        Toast.makeText(UserPemesananActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                        berhasil.show();
                     } else {
-                        Toast.makeText(UserPemesananActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(UserPemesananActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
+                        gagal.show();
                     }
                 }
                 },
                 new Response.ErrorListener() {
                 @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(UserPemesananActivity.this, "Error Connection" + error.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(UserPemesananActivity.this, "Error Connection" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    gagal.show();
                     }
                 }
                 ){

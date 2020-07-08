@@ -26,29 +26,54 @@
                 android:layout_alignParentLeft="true"
                 android:textStyle="bold"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/editakun"
-                android:src="@drawable/ic_edit"
-                android:visibility="visible"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"/>
-
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="30dp"
-        android:layout_below="@+id/toolbar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="90dp"
+        app:cardElevation="2dp"
+        android:id="@+id/editakun"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:id="@+id/card"
-        app:cardElevation="2dp">
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_user_profiles"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="30dp"
+        android:id="@+id/datatbl"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +88,8 @@
                 android:layout_height="wrap_content"
                 app:met_floatingLabel="normal"
                 android:id="@+id/txt_id"
-                android:hint="Id User"/>
+                android:hint="Id User"
+                android:visibility="gone"/>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
@@ -109,28 +135,30 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/circle_primary"
-        android:layout_below="@+id/card"
+        android:layout_above="@+id/buttom_navigation"
+        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         android:text="Logout"
         android:id="@+id/exitakun"
         android:textStyle="bold"
         android:fontFamily="@font/montserrat"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
-        android:layout_marginTop="50dp"
         android:visibility="visible"/>
 
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/circle_primary"
-        android:layout_below="@+id/card"
+        android:layout_above="@+id/buttom_navigation"
+        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         android:text="Simpan"
         android:id="@+id/update"
         android:textStyle="bold"
         android:fontFamily="@font/montserrat"
         android:textColor="@android:color/white"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:visibility="gone"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -2,13 +2,16 @@ package com.android.dlaundryaja.Activity.PageUser.Status;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import com.android.dlaundryaja.Activity.PageUser.Dashboard.UserDashboardActivity
 import com.android.dlaundryaja.Activity.PageUser.Status.History.UserHistoryActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Server.Local.Api;
+import com.android.dlaundryaja.Test.BottomSheetDialog.BottomSheetLogin;
 import com.android.dlaundryaja.Utils.Controller.SessionManager;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,6 +30,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,35 +44,55 @@ public class UserStatusActivity extends AppCompatActivity {
 
     private static final String TAG = UserStatusActivity.class.getSimpleName() ;
     ImageView imgHistory, imgStatus;
-    TextView pesanan;
+    public TextView pesanan;
     private String GetUserAPI = Api.URL_API + "getPesananUser.php";
     String getId;
+    LinearLayout story;
+    CardView cardTrack;
     SessionManager sessionManager;
+    private long backPressedTime;
+    private Toast backToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_status);
 
-
         sessionManager = new SessionManager(this);
         HashMap<String, String> user = sessionManager.getUserDetail();
         getId = user.get(SessionManager.ID);
 
         pesanan = findViewById(R.id.status);
-        imgHistory = findViewById(R.id.story);
         imgStatus = findViewById(R.id.log2);
+        cardTrack = findViewById(R.id.card_track);
+
+        cardTrack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetLogin bottomSheetLogin = new BottomSheetLogin();
+                bottomSheetLogin.show(getSupportFragmentManager(), "TAG");
+            }
+        });
+
+        story = findViewById(R.id.bt_history);
+        story.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(UserStatusActivity.this, UserHistoryActivity.class));
+                overridePendingTransition(0,0);
+            }
+        });
 
         if (pesanan.getText().equals("Belum ada Pemesanan")){
             imgStatus.setBackgroundResource(R.drawable.ic_sad);
         }
 
-        imgHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(UserStatusActivity.this, UserHistoryActivity.class));
-            }
-        });
+//        imgHistory.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(UserStatusActivity.this, UserHistoryActivity.class));
+//            }
+//        });
 //
 //        final String Status = pesanan.getText().toString();
 //        if (Status.("Belum ada Pemesanan")){
@@ -79,7 +105,6 @@ public class UserStatusActivity extends AppCompatActivity {
 //        if (Status.equals("Di Konfirmasi")){
 //            imgStatus.setBackgroundResource(R.drawable.ic_dikonfirmasi);
 //        }
-
 
         //BottomNav
         BottomNavigationView bottomNavigationView = findViewById(R.id.buttom_navigation);
@@ -209,5 +234,22 @@ public class UserStatusActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getUserDetail();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        } else {
+            backToast = Toast.makeText(this, "Tekan Lagi Untuk Keluar", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }

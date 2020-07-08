@@ -51,7 +51,7 @@ public class KurirJemputDetail extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
     SimpleDateFormat sdf2 = new SimpleDateFormat(myBulan, Locale.US);
     private String InsertTugas = Api.URL_API + "insertTugas.php";
-    private String EditStatus = Api.URL_API + "editStatus.php";
+    private String EditStatus = Api.URL_API + "updatePemesanan.php";
     private String InsertTracking = Api.URL_API + "insertTracking.php";
     int position;
 
@@ -240,6 +240,7 @@ public class KurirJemputDetail extends AppCompatActivity {
 //        final String plat = this.etPlat.getText().toString().trim();
 //        final String tahun = this.etTahun.getText().toString().trim();
         final String status = this.txtStatus.getText().toString().trim();
+        final String keterangan = this.etKet.getText().toString().trim();
         final String harga = this.etHarga.getText().toString().trim();
         final String invoice = this.etId.getText().toString().trim();
 
@@ -279,6 +280,7 @@ public class KurirJemputDetail extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("status", status);
                 params.put("harga", harga);
+                params.put("keterangan", keterangan);
                 params.put("invoice", invoice);
                 return params;
             }

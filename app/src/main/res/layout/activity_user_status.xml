@@ -7,43 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PageUser.Status.UserStatusActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:id="@+id/toolbar">
+        android:layout_height="60dp"
+        android:id="@+id/toolbar"
+        android:background="@color/colorPrimary">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Status Pemesanan"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:layout_alignParentLeft="true"
-                android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:id="@+id/bt_history"
+            android:gravity="center">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/story"
-                android:src="@drawable/ic_history"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"/>
+                android:src="@drawable/ic_history"/>
 
-        </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
 
-    </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/toolbar"
+        android:layout_height="130dp"
         android:id="@+id/card1"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         app:cardElevation="4dp">
 
@@ -51,13 +61,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Pemesanan"
+                android:textSize="24sp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="bold"
+                android:id="@+id/text0"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorPrimary"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="20sp"
-                android:layout_alignParentBottom="true">
+                android:layout_below="@+id/text0"
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,17 +187,6 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Informasi Pemesanan"
-                android:textSize="24sp"
-                android:fontFamily="@font/montserrat"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
-                android:layout_marginTop="30dp"
-                android:layout_centerHorizontal="true"/>
-
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -186,6 +197,7 @@
         android:layout_below="@+id/card1"
         android:layout_centerHorizontal="true"
         app:cardCornerRadius="30dp"
+        android:id="@+id/card_track"
         android:layout_marginTop="100dp"
         app:cardElevation="2dp">
 

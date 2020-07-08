@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.dlaundryaja.Activity.PageUser.Account.UserAccountActivity;
 import com.android.dlaundryaja.Activity.PageUser.Status.UserStatusActivity;
@@ -33,6 +34,8 @@ public class UserDashboardActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private ViewPager2 viewPager2;
     private Handler slideHandler = new Handler();
+    private long backPressedTime;
+    private Toast backToast;
 
 
     @Override
@@ -121,6 +124,7 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv1.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         final CardView card2 = findViewById(R.id.c_lengkap);
@@ -131,6 +135,7 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv2.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         final CardView card3 = findViewById(R.id.c_setrika);
@@ -141,6 +146,7 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv3.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
         final CardView card4 = findViewById(R.id.c_sepatu);
@@ -151,6 +157,7 @@ public class UserDashboardActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserDashboardActivity.this, UserPemesananActivity.class);
                 intent.putExtra("jenis",tv4.getText().toString());
                 startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
     }
@@ -172,5 +179,21 @@ public class UserDashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         slideHandler.postDelayed(sliderRunnable, 3000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        } else {
+            backToast = Toast.makeText(this, "Tekan Lagi Untuk Keluar", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }

@@ -20,6 +20,7 @@ import com.android.dlaundryaja.Activity.PageAdmin.Dashboard.AdmMenuDashboard;
 import com.android.dlaundryaja.Activity.PageKurir.KurirDashboardActivity;
 import com.android.dlaundryaja.Activity.PageUser.Dashboard.UserDashboardActivity;
 import com.android.dlaundryaja.R;
+import com.android.dlaundryaja.Register.RegisterActivity;
 import com.android.dlaundryaja.Server.Local.Api;
 import com.android.dlaundryaja.Utils.Controller.SessionManager;
 import com.android.volley.AuthFailureError;
@@ -58,11 +59,18 @@ public class LoginActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        btRegist = findViewById(R.id.show_regist);
+        btRegist = findViewById(R.id.register);
         btLogin = findViewById(R.id.log_btn_login);
         Mail = findViewById(R.id.log_txt_email);
         Pass = findViewById(R.id.log_txt_pass);
         loginstate = findViewById(R.id.state);
+
+        btRegist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,6 +16,7 @@ import com.android.dlaundryaja.Activity.PageKurir.Akun.KurirAkunActivity;
 import com.android.dlaundryaja.Activity.PageKurir.DiJemput.KurirJemputActivity;
 import com.android.dlaundryaja.Activity.PageKurir.Diantar.KurirAntarActivity;
 import com.android.dlaundryaja.Activity.PageKurir.Tugas.KurirTugasActivity;
+import com.android.dlaundryaja.Activity.PageUser.Account.UserAccountActivity;
 import com.android.dlaundryaja.Login.LoginActivity;
 import com.android.dlaundryaja.R;
 import com.android.dlaundryaja.Server.Local.Api;
@@ -26,6 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,7 +70,21 @@ public class KurirDashboardActivity extends AppCompatActivity {
         bt_Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Logout();
+                new SweetAlertDialog(KurirDashboardActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText(getNama)
+                        .setContentText("Kamu Beneran Mau Logout ?")
+                        .setCancelText("Engga")
+                        .setConfirmText("Iya Nih")
+                        .setCustomImage(R.drawable.ic_question)
+                        .showCancelButton(true)
+                        .setCancelClickListener(null)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                Logout();
+                            }
+                        })
+                        .show();
             }
         });
         cJemput.setOnClickListener(new View.OnClickListener() {

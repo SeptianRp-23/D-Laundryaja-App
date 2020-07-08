@@ -2,6 +2,7 @@ package com.android.dlaundryaja.Activity.PageUser.Account;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -31,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.json.JSONArray;
@@ -44,10 +46,12 @@ public class UserAccountActivity extends AppCompatActivity {
 
     private static final String TAG = UserStatusActivity.class.getSimpleName() ;
     SessionManager sessionManager;
-    String getID;
+    String getID, getNama;
     SharedPreferences sharedPreferences;
     Button btLogout, btUpdate;
-    ImageView btEdit;
+    private long backPressedTime;
+    private Toast backToast;
+    CardView btEdit;
     Context mContext;
     MaterialEditText etID, etNama, etEmail, etTgl, etTelp, etAlamat;
     private String GetUserAPI = Api.URL_API + "dataUser.php";
@@ -63,6 +67,7 @@ public class UserAccountActivity extends AppCompatActivity {
 
         HashMap<String, String> user = sessionManager.getUserDetail();
         getID = user.get(SessionManager.ID);
+        getNama = user.get(SessionManager.NAME);
 
         btEdit = findViewById(R.id.editakun);
         btLogout = findViewById(R.id.exitakun);
@@ -101,27 +106,43 @@ public class UserAccountActivity extends AppCompatActivity {
         btLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(UserAccountActivity.this);
-                builder.setMessage("Confirm Exit");
-                builder.setIcon(R.drawable.ic_exit);
-                builder.setMessage("Yakin Ingin Keluar ?");
-                builder.setCancelable(false);
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(UserAccountActivity.this);
+//                builder.setMessage("Confirm Exit");
+//                builder.setIcon(R.drawable.ic_exit);
+//                builder.setMessage("Yakin Ingin Keluar ?");
+//                builder.setCancelable(false);
+//
+//                builder.setPositiveButton("Yaa", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Logout();
+//                        finish();
+//                    }
+//                });
+//                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Toast.makeText(UserAccountActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
 
-                builder.setPositiveButton("Yaa", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Logout();
-                        finish();
-                    }
-                });
-                builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UserAccountActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                new SweetAlertDialog(UserAccountActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                        .setTitleText(getNama)
+                        .setContentText("Kamu Beneran Mau Logout ?")
+                        .setCancelText("Engga")
+                        .setConfirmText("Iya Nih")
+                        .setCustomImage(R.drawable.ic_question)
+                        .showCancelButton(true)
+                        .setCancelClickListener(null)
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                Logout();
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -309,5 +330,21 @@ public class UserAccountActivity extends AppCompatActivity {
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
+        } else {
+            backToast = Toast.makeText(this, "Tekan Lagi Untuk Keluar", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }

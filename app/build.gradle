@@ -44,5 +44,9 @@ dependencies {
 
     //loading animation
     implementation 'com.agrawalsuneet.androidlibs:dotsloader:1.4'
+    implementation 'com.r0adkll:slidableactivity:2.0.6'
+//    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+//    implementation 'cn.pedant.sweetalert:library:1.3'
+    implementation 'com.github.thomper:sweet-alert-dialog:1.4.0'
 
 }
